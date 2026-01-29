@@ -1,0 +1,248 @@
+
+import React, { useState, useEffect } from 'react';
+import { Send, Mail, MapPin, Linkedin, Github, Twitter, Terminal, Cpu, Globe, ArrowRight, Copy, Check, ShieldCheck, Zap, Activity } from 'lucide-react';
+
+export const ContactSection: React.FC = () => {
+  const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formProgress, setFormProgress] = useState(0);
+
+  const email = "hello@bentofolio.dev";
+
+  useEffect(() => {
+    let progress = 0;
+    if (formData.name.length > 2) progress += 33;
+    if (formData.email.includes('@') && formData.email.length > 5) progress += 33;
+    if (formData.message.length > 5) progress += 34;
+    setFormProgress(progress);
+  }, [formData]);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText(email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  return (
+    <div className="relative py-32 overflow-hidden">
+
+      {/* Decorative Grid Overlay */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+           style={{ backgroundImage: `radial-gradient(circle, #fff 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
+
+      <div className="relative z-10 max-w-7xl mx-auto ">
+        
+        {/* Top Header HUD */}
+        <div className="flex items-center gap-6 mb-20">
+          <div className="flex flex-col gap-1">
+             <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse shadow-[0_0_10px_#a3e635]" />
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/60">System.Link_Established</span>
+             </div>
+             <div className="h-px w-40 bg-gradient-to-r from-lime-400/50 to-transparent" />
+          </div>
+          <div className="text-[9px] font-mono text-white/20 uppercase tracking-widest hidden md:block">
+            LAT: 47.3769° N | LONG: 8.5417° E
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+          
+          {/* Left Side: Identity & Socials */}
+          <div className="lg:col-span-5 space-y-16">
+            <div className="relative">
+              <div className="absolute -left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-lime-400 to-transparent opacity-20" />
+              <h2 className="text-7xl md:text-8xl font-black tracking-tighter leading-[0.85] mb-8">
+                HAVE A <br/>
+                <span className="text-white/20 italic font-light">Vision?</span> <br/>
+                <span className="text-lime-400">CONNECT.</span>
+              </h2>
+              <p className="text-lg text-white/40 leading-relaxed font-medium max-w-sm">
+                Available for strategic partnerships and high-stakes engineering projects worldwide.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {/* Interactive Email Card */}
+              <div 
+                onClick={copyEmail}
+                className="group relative p-8 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-lime-400/30 transition-all duration-500 cursor-pointer overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <Mail className="w-20 h-20" />
+                </div>
+                <div className="relative z-10">
+                  <p className="text-[10px] uppercase text-white/20 tracking-[0.3em] font-black mb-4 flex items-center gap-2">
+                    <Terminal className="w-3 h-3 text-lime-400" /> Primary Endpoint
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xl md:text-2xl font-bold text-white group-hover:text-lime-400 transition-colors">
+                      {email}
+                    </span>
+                    <div className={`p-3 rounded-xl transition-all ${copied ? 'bg-[#CCFF00] text-black scale-110 shadow-[0_0_20px_rgba(163,230,53,0.4)]' : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white'}`}>
+                      {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                    </div>
+                  </div>
+                </div>
+                {/* Progress highlight on hover */}
+                <div className="absolute bottom-0 left-0 h-1 bg-[#CCFF00] transition-all duration-700 opacity-0 group-hover:opacity-100" style={{ width: copied ? '100%' : '20%' }} />
+              </div>
+
+              {/* Location Card */}
+              <div className="p-8 rounded-[32px] bg-white/[0.01] border border-white/5 flex items-center justify-between group">
+                <div>
+                   <p className="text-[10px] uppercase text-white/20 tracking-[0.3em] font-black mb-1">HQ Origin</p>
+                   <p className="text-lg font-bold text-white/60 group-hover:text-white transition-colors">Zurich, Switzerland</p>
+                </div>
+                <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white/20 group-hover:text-purple-400 transition-colors">
+                  <Globe className="w-6 h-6 animate-spin-slow" />
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              {[
+                { icon: <Linkedin className="w-5 h-5" />, color: 'hover:text-blue-400', label: 'LI' },
+                { icon: <Github className="w-5 h-5" />, color: 'hover:text-white', label: 'GH' },
+                { icon: <Twitter className="w-5 h-5" />, color: 'hover:text-sky-400', label: 'TW' }
+              ].map((social, i) => (
+                <a key={i} href="#" className={`group relative w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center transition-all hover:bg-white/10 ${social.color} hover:-translate-y-2`}>
+                   <div className="relative z-10">{social.icon}</div>
+                   <span className="absolute bottom-2 text-[8px] font-black opacity-0 group-hover:opacity-40 transition-opacity">{social.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Side: Command Console */}
+          <div className="lg:col-span-7">
+            <div className="relative p-1 md:p-10 rounded-[48px] lg:bg-white/[0.02] lg:border border-white/5 lg:backdrop-blur-3xl">
+              
+              {/* Form Telemetry HUD */}
+              <div className="hidden lg:flex items-center justify-between mb-12 p-4 rounded-2xl bg-black/40 border border-white/5">
+                <div className="flex items-center gap-6">
+                  <div className="flex flex-col">
+                    <span className="text-[8px] font-black text-white/20 uppercase tracking-widest mb-1">Input_Sync</span>
+                    <div className="flex gap-1">
+                       {[1, 2, 3].map(i => (
+                         <div key={i} className={`w-4 h-1 rounded-full transition-colors ${formProgress >= i * 33 ? 'bg-[#CCFF00] shadow-[0_0_5px_#a3e635]' : 'bg-white/10'}`} />
+                       ))}
+                    </div>
+                  </div>
+                  <div className="h-8 w-px bg-white/5" />
+                  <div className="flex flex-col">
+                    <span className="text-[8px] font-black text-white/20 uppercase tracking-widest mb-1">Status</span>
+                    <span className={`text-[10px] font-bold uppercase ${formProgress === 100 ? 'text-lime-400' : 'text-white/40'}`}>
+                      {formProgress === 100 ? 'Ready for Broadcast' : 'Data Acquisition...'}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                   <Activity className="w-4 h-4 text-white/20" />
+                   <span className="text-[10px] font-mono text-white/20">{(formProgress * 1.23).toFixed(2)}MHz</span>
+                </div>
+              </div>
+
+              <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid md:grid-cols-2 gap-12">
+                  <div className="relative">
+                    <label className={`absolute -top-6 left-0 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${focusedField === 'name' ? 'text-lime-400' : 'text-white/20'}`}>
+                      01_Identity
+                    </label>
+                    <input 
+                      type="text" 
+                      placeholder="Your Name" 
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      onFocus={() => setFocusedField('name')}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full bg-transparent border-b-2 border-white/10 py-6 text-xl font-bold placeholder:text-white/5 focus:outline-none focus:border-lime-400 transition-all text-white"
+                    />
+                    {focusedField === 'name' && <div className="absolute bottom-0 left-0 h-0.5 bg-[#CCFF00] shadow-[0_0_15px_#a3e635] animate-width-full" />}
+                  </div>
+
+                  <div className="relative">
+                    <label className={`absolute -top-6 left-0 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${focusedField === 'email' ? 'text-purple-400' : 'text-white/20'}`}>
+                      02_Endpoint
+                    </label>
+                    <input 
+                      type="email" 
+                      placeholder="Email Address" 
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      onFocus={() => setFocusedField('email')}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full bg-transparent border-b-2 border-white/10 py-6 text-xl font-bold placeholder:text-white/5 focus:outline-none focus:border-purple-400 transition-all text-white"
+                    />
+                    {focusedField === 'email' && <div className="absolute bottom-0 left-0 h-0.5 bg-purple-500 shadow-[0_0_15px_#a855f7] animate-width-full" />}
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <label className={`absolute -top-6 left-0 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${focusedField === 'message' ? 'text-lime-400' : 'text-white/20'}`}>
+                    03_Objectives
+                  </label>
+                  <textarea 
+                    rows={4} 
+                    placeholder="Describe your project scope..." 
+                    value={formData.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    onFocus={() => setFocusedField('message')}
+                    onBlur={() => setFocusedField(null)}
+                    className="w-full bg-transparent border-b-2 border-white/10 py-6 text-xl font-bold placeholder:text-white/5 focus:outline-none focus:border-lime-400 transition-all resize-none text-white"
+                  />
+                  {focusedField === 'message' && <div className="absolute bottom-0 left-0 h-0.5 bg-[#CCFF00] shadow-[0_0_15px_#a3e635] animate-width-full" />}
+                </div>
+
+                <div className="relative pt-6">
+                  <button 
+                    type="submit"
+                    className="group relative w-full overflow-hidden rounded-[32px] bg-[#CCFF00] py-8 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-lime-400/20"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                    <div className="relative z-10 flex items-center justify-center gap-4 text-black font-black uppercase tracking-[0.3em] text-sm">
+                      <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      Broadcast Signal
+                    </div>
+                  </button>
+                  
+                  {/* Security Clearance Tag */}
+                  <div className="mt-8 flex items-center justify-center gap-4">
+                    <div className="h-px flex-1 bg-white/5" />
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/5 bg-white/[0.02] text-[9px] font-black uppercase tracking-widest text-white/20">
+                      <ShieldCheck className="w-3 h-3 text-lime-400/50" />
+                      Encrypted_Node_V3.1
+                    </div>
+                    <div className="h-px flex-1 bg-white/5" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes width-full {
+          from { width: 0; }
+          to { width: 100%; }
+        }
+        .animate-width-full {
+          animation: width-full 0.4s ease-out forwards;
+        }
+        .animate-spin-slow {
+          animation: spin 8s linear infinite;
+        }
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
+    </div>
+  );
+};
