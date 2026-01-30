@@ -16,6 +16,7 @@ export interface Project {
   tags: string[];
   techStack: TechUsage[];
   category: 'ui' | 'api' | 'logic';
+  accentClass : String[]
 }
 
 export interface Skill {

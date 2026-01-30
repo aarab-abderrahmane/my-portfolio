@@ -85,6 +85,7 @@ const App: React.FC = () => {
 
         <section id="projects" className="mt-40">
           <ProjectsGrid 
+          
             projects={filteredProjects} 
             activeFilter={activeFilter} 
             setActiveFilter={(f) => {

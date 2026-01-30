@@ -1,14 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
 import { Send, Mail, MapPin, Linkedin, Github, Twitter, Terminal, Cpu, Globe, ArrowRight, Copy, Check, ShieldCheck, Zap, Activity } from 'lucide-react';
+import { eventNames } from 'process';
+import { fromTheme } from 'tailwind-merge';
 
 export const ContactSection: React.FC = () => {
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' , access_key:""});
   const [formProgress, setFormProgress] = useState(0);
 
-  const email = "hello@bentofolio.dev";
+  const email = "abderrahmanerb.contact@gmail.com";
 
   useEffect(() => {
     let progress = 0;
@@ -28,8 +30,43 @@ export const ContactSection: React.FC = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const [result, setResult] = useState("");
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setResult("Sending...");
+
+  // 1. إنشاء FormData مباشرة من عناصر النموذج (الـ Inputs)
+  const data = new FormData(e.currentTarget);
+  
+  // 2. إضافة المفتاح البرمجي
+  data.append("access_key", "8f18f2e6-8e5b-4929-b24e-3e234837dbb5");
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: data // نرسل كائن data مباشرة كما في التوثيق
+    });
+
+    const resData = await response.json();
+
+    if (resData.success) {
+      setResult("Success!");
+      // تصفير الحقول يدوياً بما أنك تستخدم Controlled Inputs
+      setFormData({ name: '', email: '', message: '', access_key: '' });
+    } else {
+      setResult("Error");
+    }
+  } catch (error) {
+    setResult("Error");
+  }
+};
+
+
+  console.log(result)
+
   return (
-    <div className="relative py-32 overflow-hidden">
+    <div className="relative py-32 ">
 
       {/* Decorative Grid Overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
@@ -38,18 +75,7 @@ export const ContactSection: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto ">
         
         {/* Top Header HUD */}
-        <div className="flex items-center gap-6 mb-20">
-          <div className="flex flex-col gap-1">
-             <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse shadow-[0_0_10px_#a3e635]" />
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/60">System.Link_Established</span>
-             </div>
-             <div className="h-px w-40 bg-gradient-to-r from-lime-400/50 to-transparent" />
-          </div>
-          <div className="text-[9px] font-mono text-white/20 uppercase tracking-widest hidden md:block">
-            LAT: 47.3769° N | LONG: 8.5417° E
-          </div>
-        </div>
+  
 
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
           
@@ -80,9 +106,9 @@ export const ContactSection: React.FC = () => {
                   <p className="text-[10px] uppercase text-white/20 tracking-[0.3em] font-black mb-4 flex items-center gap-2">
                     <Terminal className="w-3 h-3 text-lime-400" /> Primary Endpoint
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xl md:text-2xl font-bold text-white group-hover:text-lime-400 transition-colors">
-                      {email}
+                  <div className="flex items-center justify-between ">
+                    <span className="text-xl md:text-2xl font-bold break-all text-white group-hover:text-lime-400 transition-colors">
+                        {email}
                     </span>
                     <div className={`p-3 rounded-xl transition-all ${copied ? 'bg-[#CCFF00] text-black scale-110 shadow-[0_0_20px_rgba(163,230,53,0.4)]' : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white'}`}>
                       {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
@@ -96,8 +122,8 @@ export const ContactSection: React.FC = () => {
               {/* Location Card */}
               <div className="p-8 rounded-[32px] bg-white/[0.01] border border-white/5 flex items-center justify-between group">
                 <div>
-                   <p className="text-[10px] uppercase text-white/20 tracking-[0.3em] font-black mb-1">HQ Origin</p>
-                   <p className="text-lg font-bold text-white/60 group-hover:text-white transition-colors">Zurich, Switzerland</p>
+                   <p className="text-[10px] uppercase text-white/20 tracking-[0.3em] font-black mb-1">Origin</p>
+                   <p className="text-lg font-bold text-white/60 group-hover:text-white transition-colors">Morocco</p>
                 </div>
                 <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white/20 group-hover:text-purple-400 transition-colors">
                   <Globe className="w-6 h-6 animate-spin-slow" />
@@ -144,11 +170,10 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-3">
                    <Activity className="w-4 h-4 text-white/20" />
-                   <span className="text-[10px] font-mono text-white/20">{(formProgress * 1.23).toFixed(2)}MHz</span>
                 </div>
               </div>
 
-              <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-12" onSubmit={onSubmit}>
                 <div className="grid md:grid-cols-2 gap-12">
                   <div className="relative">
                     <label className={`absolute -top-6 left-0 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${focusedField === 'name' ? 'text-lime-400' : 'text-white/20'}`}>
@@ -156,6 +181,7 @@ export const ContactSection: React.FC = () => {
                     </label>
                     <input 
                       type="text" 
+                      name="name"
                       placeholder="Your Name" 
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
@@ -172,6 +198,7 @@ export const ContactSection: React.FC = () => {
                     </label>
                     <input 
                       type="email" 
+                      name ="email"
                       placeholder="Email Address" 
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
@@ -189,6 +216,7 @@ export const ContactSection: React.FC = () => {
                   </label>
                   <textarea 
                     rows={4} 
+                    name="text"
                     placeholder="Describe your project scope..." 
                     value={formData.message}
                     onChange={(e) => handleInputChange('message', e.target.value)}

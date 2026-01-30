@@ -1,5 +1,8 @@
 
 import React from 'react';
+import ProfileCard from "./ui/ProfileCard"
+
+import {Skiper48} from  './ui/skiper-ui/skiper48'
 import { 
   ArrowRight, 
   Code2, 
@@ -33,35 +36,18 @@ export const AboutSection: React.FC = () => {
       </div>
 
       {/* Main Bento Grid - Mobile First */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8 auto-rows-[minmax(200px,auto)] relative z-10 px-4 md:px-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8 auto-rows-[minmax(200px,260px)] relative z-10 px-4 md:px-0">
         
         {/* Profile Identity - The "Deep Emerald" Core */}
-        <div className="md:col-span-2 lg:col-span-8 lg:row-span-2 glass-2.0 rounded-[40px] md:rounded-[56px] border border-white/10 overflow-hidden group flex flex-col md:flex-row shadow-2xl hover:border-emerald-500/40 transition-all duration-700">
+        <div className="md:col-span-2 lg:col-span-8 lg:row-span-2 glass-2.0 rounded-[40px] md:rounded-[56px] max-h-[550px] overflow-hidden group flex flex-col md:flex-row  hover:border-emerald-500/40 transition-all duration-700">
           <div className="w-full md:w-1/2 relative h-[350px] md:h-full min-h-[350px] md:min-h-[450px] overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/40 via-blue-900/20 to-transparent z-0 group-hover:scale-110 transition-transform duration-1000" />
-            <img 
-              src="/public/images/1762981553824.png" 
-              alt="Aarab Abderrahmane" 
-              className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 mix-blend-luminosity group-hover:grayscale-0 group-hover:mix-blend-normal group-hover:scale-105 transition-all duration-1000"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-transparent to-transparent z-10" />
+     
+              <ProfileCard/>
 
-            <div className="absolute bottom-8 md:bottom-12 left-8 md:left-12 z-20">
-              {/* <div className="flex items-center gap-3 mb-3">
-                <div className="w-2 md:w-3 h-2 md:h-3 rounded-full bg-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.8)] animate-pulse" />
-                <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] text-emerald-400">Status: Optimized</span>
-              </div> */}
-              <h3 className="text-4xl break-all md:text-6xl font-black tracking-tighter text-white mb-1">Aarab <p className="text-emerald-400  text-3xl md:text-5xl">Abderrahmane</p></h3>
-              <p className="text-white/30 font-bold text-[9px] md:text-xs uppercase tracking-[0.5em] flex items-center gap-2">
-                <Compass className="w-3 h-3" /> Full Stack Developer
-              </p>
-            </div>
           </div>
           
-          <div className="w-full md:w-1/2 p-8 md:p-14 flex flex-col justify-center bg-[#0a0a0a]/40 backdrop-blur-3xl relative">
-            <div className="absolute top-10 right-10 opacity-10 group-hover:opacity-30 transition-opacity hidden md:block">
-               <Command className="w-20 h-20 text-emerald-400" />
-            </div>
+          <div className="w-full md:w-1/2 p-8 flex flex-col  bg-[#0a0a0a]/40 backdrop-blur-3xl relative">
+        
             <h4 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-white tracking-tight leading-snug">
               Building <span className="text-emerald-400">scalable web applications</span> and crafting intuitive user experiences.
             </h4>
@@ -82,26 +68,24 @@ export const AboutSection: React.FC = () => {
         </div>
 
         {/* Stats Module - The "Solar Gold" Energy */}
-        <div className="md:col-span-1 lg:col-span-4 lg:row-span-1 relative overflow-hidden rounded-[40px] md:rounded-[56px] p-8 md:p-12 flex flex-col justify-between group cursor-pointer transition-all duration-700 bg-gradient-to-br from-amber-400 via-orange-500 to-rose-600 shadow-[0_0_80px_rgba(251,191,36,0.15)] hover:shadow-[0_0_100px_rgba(251,191,36,0.3)] hover:-translate-y-2 min-h-[300px] md:min-h-0">
+        <div  data-lenis-prevent className="md:col-span-1 lg:col-span-4  lg:row-span-2 relative  rounded-[40px] md:rounded-[56px] p-8  flex flex-col justify-between group cursor-pointer transition-all duration-700 bg-gradient-to-br from-gray-400 via-gray-600 to-gray-800   shadow-[0_0_80px_rgba(148,255,41,0.15)] hover:shadow-[0_0_100px_rgba(148,255,41,0.3)] hover:-translate-y-2 min-h-[300px] max-h-[600px] overflow-y-scroll md:min-h-0">
           <div className="absolute inset-0 opacity-20 mix-blend-soft-light pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
           
           <div className="flex justify-between items-start relative z-10">
-            <Activity className="w-8 md:w-10 h-8 md:h-10 text-black/40 group-hover:scale-110 transition-transform" />
             <div className="px-3 py-1 bg-black/10 rounded-full text-[9px] font-black uppercase tracking-widest text-black/60 backdrop-blur-sm">
-              Optimization Focus
+              technology stack
             </div>
           </div>
-          <div className="relative z-10">
-            <div className="text-6xl md:text-8xl font-black tracking-tighter text-black mb-3">100</div>
-            <p className="text-xs md:text-sm font-bold text-black/70 uppercase tracking-[0.2em] leading-tight">Lighthouse Score Target</p>
-          </div>
-          <div className="flex items-center justify-between relative z-10">
-            <span className="text-[9px] md:text-[10px] font-black text-black/40 uppercase">High Performance</span>
-            <ArrowRight className="w-6 md:w-7 h-6 md:h-7 text-black group-hover:translate-x-3 transition-transform" />
-          </div>
+              <div className="mt-10 md:mt-4 flex flex-wrap gap-2 md:gap-3">
+              {['React 19', 'JavaScript (ES6+)', 'TypeScript', 'Node.js', 'Express.js', 'Tailwind CSS 4', 'Gemini AI API', 'OpenRouter', 'MongoDB Atlas', 'MySQL', 'PHP', 'Python', 'Framer Motion', 'GSAP', '@dnd-kit', 'Context API', 'Git', 'GitHub', 'Postman', 'REST APIs', 'Vercel'].map(tag => (
+                <span key={tag} className="px-3 md:px-4 py-1.5 md:py-2 bg-white/5 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] font-black uppercase tracking-widest text-white/20 border border-white/5 hover:border-white/20 hover:text-white transition-all cursor-default">
+                  {tag}
+                </span>
+              ))}
+            </div>
         </div>
 
-        {/* Pillar: Architecture - The "Azure" Focus */}
+        {/* Pillar: Architecture - The "Azure" Focus
         <div className="md:col-span-1 lg:col-span-4 lg:row-span-1 glass-2.0 rounded-[40px] md:rounded-[56px] border border-white/5 p-8 md:p-12 group hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all duration-500 relative overflow-hidden">
           <div className="absolute -right-10 -top-10 w-32 md:w-40 h-32 md:h-40 bg-cyan-500/10 blur-[50px] md:blur-[60px] rounded-full group-hover:bg-cyan-500/20 transition-all" />
           <div className="w-14 md:w-16 h-14 md:h-16 bg-cyan-500/10 rounded-[20px] md:rounded-3xl flex items-center justify-center text-cyan-400 mb-8 md:mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all border border-cyan-500/20">
@@ -111,49 +95,15 @@ export const AboutSection: React.FC = () => {
           <p className="text-sm md:text-base text-white/40 leading-relaxed font-medium group-hover:text-white/70 transition-colors">
             Reliable Architecture I build modular, maintainable applications focusing on clean code and efficient data flow. My goal is to create stable systems that are easy to debug, test, and scale as the user base grows.
           </p>
-        </div>
+        </div> */}
 
         {/* Tech Stack Visual - The "Deep Indigo" Dashboard */}
-        <div className="md:col-span-1 lg:col-span-4 lg:row-span-2 glass-2.0 rounded-[40px] md:rounded-[56px] border border-white/5 p-8 md:p-14 overflow-hidden relative group hover:border-indigo-500/30 transition-all duration-700">
-          <div className="relative z-10 h-full flex flex-col">
-            <div className="flex items-center gap-4 mb-8 md:mb-10">
-              <div className="p-3 bg-indigo-500/10 rounded-2xl border border-indigo-500/20">
-                 <Terminal className="w-5 md:w-6 h-5 md:h-6 text-indigo-400" />
-              </div>
-              <h4 className="text-2xl md:text-3xl font-black text-white tracking-tighter">Core<br className="hidden md:block"/>Logic.</h4>
-            </div>
+        <div className="md:col-span-1 lg:col-span-4 lg:row-span-2  overflow-hidden relative group hover:border-indigo-500/30 transition-all duration-700">
+
             
-            <div className="space-y-6 flex-1">
-              {[
-                { name: 'React / Next.js', percent: 96, color: 'from-emerald-400 to-cyan-400' },
-                { name: 'TypeScript', percent: 92, color: 'from-blue-500 to-indigo-500' },
-                { name: 'Node / Systems', percent: 88, color: 'from-indigo-500 to-purple-500' },
-                { name: 'Cloud Infra', percent: 82, color: 'from-rose-500 to-orange-500' }
-              ].map((item, i) => (
-                <div key={i} className="space-y-2 group/bar">
-                  <div className="flex justify-between text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/30 group-hover/bar:text-white/60 transition-colors">
-                    <span>{item.name}</span>
-                    <span>{item.percent}%</span>
-                  </div>
-                  <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
-                    <div 
-                      className={`h-full bg-gradient-to-r ${item.color} rounded-full transition-all duration-[1.5s] ease-out shadow-[0_0_15px_rgba(255,255,255,0.1)]`} 
-                      style={{ width: `${item.percent}%` }} 
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+              <Skiper48/>
             
-            <div className="mt-10 md:mt-12 flex flex-wrap gap-2 md:gap-3">
-              {['Tailwind', 'Docker', 'AWS', 'Redis', 'GraphQL'].map(tag => (
-                <span key={tag} className="px-3 md:px-4 py-1.5 md:py-2 bg-white/5 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] font-black uppercase tracking-widest text-white/20 border border-white/5 hover:border-white/20 hover:text-white transition-all cursor-default">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="absolute inset-0 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+      
         </div>
 
       

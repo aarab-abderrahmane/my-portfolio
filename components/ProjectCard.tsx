@@ -14,23 +14,23 @@ export const ProjectCard: React.FC<ProjectModuleProps> = ({ project, onOpen }) =
   const [isHovered, setIsHovered] = useState(false);
 
   // Determine accent color based on category
-  const accentClass = project.category === 'ui' ? 'lime-400' : project.category === 'api' ? 'purple-500' : 'rose-400';
+  // const project.accentClass = project.category === 'ui' ? 'lime-400' : project.category === 'logic' ? 'amber-200' : 'rose-200';
   const glowShadow = project.category === 'ui' 
     ? 'hover:shadow-[0_0_50px_rgba(163,230,53,0.2)]' 
     : project.category === 'api' 
       ? 'hover:shadow-[0_0_50px_rgba(168,85,247,0.2)]' 
-      : 'hover:shadow-[0_0_50px_rgba(96,165,250,0.2)]';
+      : 'hover:shadow-[0_0_50px_rgba(96,165,250,0.2)]'; 
 
   return (
     <div 
-      className={`group relative rounded-[48px] overflow-hidden transition-all duration-700 cursor-pointer flex flex-col h-full bg-[#0d0d0d] border border-white/5 ${glowShadow} hover:border-${accentClass}/30`}
+      className={`group relative rounded-[48px] overflow-hidden transition-all duration-700 cursor-pointer flex flex-col h-full bg-[#0d0d0d] border border-white/5 ${glowShadow} hover:border-${project.accentClass}/30`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => onOpen(project)}
     >
       {/* Dynamic Ambient Background Glows */}
-      <div className={`absolute -top-20 -right-20 w-64 h-64 bg-${accentClass}/5 blur-[80px] rounded-full transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`} />
-      <div className={`absolute -bottom-20 -left-20 w-64 h-64 bg-${accentClass}/5 blur-[80px] rounded-full transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`} />
+      <div className={`absolute -top-20 -right-20 w-64 h-64 bg-${project.accentClass}/5 blur-[80px] rounded-full transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`} />
+      <div className={`absolute -bottom-20 -left-20 w-64 h-64 bg-${project.accentClass}/5 blur-[80px] rounded-full transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`} />
 
       {/* Main Media Engine */}
       <div className="relative h-full w-full overflow-hidden">
@@ -51,7 +51,7 @@ export const ProjectCard: React.FC<ProjectModuleProps> = ({ project, onOpen }) =
         {/* Top Header Navigation */}
         <div className="absolute top-10 left-10 right-10 flex justify-between items-center z-40">
           <div className="flex items-center gap-3 glass-heavy px-4 py-2 rounded-2xl border border-white/10">
-             <div className={`w-2 h-2 rounded-full bg-${accentClass} animate-pulse shadow-[0_0_10px_rgba(163,230,53,0.8)]`} />
+             <div className={`w-2 h-2 rounded-full bg-${project.accentClass} animate-pulse shadow-[0_0_10px_rgba(163,230,53,0.8)]`} />
              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/70">
                {project.category}::MDR
              </span>
@@ -59,15 +59,15 @@ export const ProjectCard: React.FC<ProjectModuleProps> = ({ project, onOpen }) =
           <div 
             className={`p-4 glass-heavy rounded-2xl border border-white/10 text-white transition-all duration-500 transform ${isHovered ? 'scale-110 -rotate-12 bg-white/10 border-white/20' : ''}`}
           >
-            <ArrowUpRight className={`w-5 h-5 transition-colors ${isHovered ? `text-${accentClass}` : 'text-white/40'}`} />
+            <ArrowUpRight className={`w-5 h-5 transition-colors ${isHovered ? `text-${project.accentClass}` : 'text-white/40'}`} />
           </div>
         </div>
 
         {/* Central Intelligence Panel (Hidden by default, slides in)
         <div className={`absolute inset-x-10 top-28 z-40 space-y-4 transition-all duration-700 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
           <div className="flex items-center gap-2 mb-2">
-             <Terminal className={`w-3.5 h-3.5 text-${accentClass}`} />
-             <span className={`text-[9px] font-black uppercase tracking-[0.2em] text-${accentClass}`}>Technical Manifest</span>
+             <Terminal className={`w-3.5 h-3.5 text-${project.accentClass}`} />
+             <span className={`text-[9px] font-black uppercase tracking-[0.2em] text-${project.accentClass}`}>Technical Manifest</span>
           </div>
           {project.techStack.map((stack, i) => (
             <div 
@@ -75,7 +75,7 @@ export const ProjectCard: React.FC<ProjectModuleProps> = ({ project, onOpen }) =
               className="glass-heavy p-5 rounded-[24px] border border-white/5 hover:border-white/20 transition-all duration-500 group/stack relative overflow-hidden"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
-              <div className={`absolute top-0 left-0 w-1 h-full bg-${accentClass} opacity-0 group-hover/stack:opacity-100 transition-opacity`} />
+              <div className={`absolute top-0 left-0 w-1 h-full bg-${project.accentClass} opacity-0 group-hover/stack:opacity-100 transition-opacity`} />
               <div className="flex items-center gap-3 mb-2">
                 <Code2 className="w-4 h-4 text-white/40" />
                 <span className="text-sm font-bold text-white tracking-tight">{stack.tech}</span>
@@ -91,7 +91,7 @@ export const ProjectCard: React.FC<ProjectModuleProps> = ({ project, onOpen }) =
         <div className={`absolute bottom-12 left-10 right-10 z-30 transition-all duration-700 ${isHovered ? '-translate-y-4' : 'translate-y-0'}`}>
           <div className="flex flex-wrap gap-2 mb-8">
             {project.tags.slice(0, 3).map(tag => (
-              <span key={tag} className={`px-4 py-1.5 glass-heavy rounded-full text-[9px] font-black uppercase tracking-widest text-white/40 border border-white/5 transition-all duration-500 ${isHovered ? `group-hover:text-${accentClass} group-hover:border-${accentClass}/30` : ''}`}>
+              <span key={tag} className={`px-4 py-1.5 glass-heavy rounded-full text-[9px] font-black uppercase tracking-widest text-white/40 border border-white/5 transition-all duration-500 ${isHovered ? `group-hover:text-${project.accentClass} group-hover:border-${project.accentClass}/30` : ''}`}>
                 {tag}
               </span>
             ))}
@@ -109,7 +109,7 @@ export const ProjectCard: React.FC<ProjectModuleProps> = ({ project, onOpen }) =
         {/* Interaction HUD */}
         <div className={`absolute bottom-12 right-10 z-50 transition-all duration-500 ${isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10 pointer-events-none'}`}>
            <div 
-             className={`px-8 py-4 bg-${accentClass} text-black rounded-full text-[11px] font-black uppercase tracking-[0.2em] flex items-center gap-3 shadow-[0_0_30px_rgba(163,230,53,0.4)] transition-transform hover:scale-105 active:scale-95`}
+             className={`px-8 py-4 bg-${project.accentClass} text-black rounded-full text-[11px] font-black uppercase tracking-[0.2em] flex items-center gap-3 shadow-[0_0_30px_rgba(163,230,53,0.4)] transition-transform hover:scale-105 active:scale-95`}
            >
              <Zap className="w-4 h-4 fill-current" />
              Initialize Detail
@@ -119,7 +119,7 @@ export const ProjectCard: React.FC<ProjectModuleProps> = ({ project, onOpen }) =
         {/* Decorative Progress Bar for technical feel */}
         <div className="absolute bottom-0 left-0 w-full h-1.5 bg-white/5 z-40 overflow-hidden">
            <div 
-             className={`h-full bg-${accentClass} transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(163,230,53,0.5)]`}
+             className={`h-full bg-${project.accentClass} transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(163,230,53,0.5)]`}
              style={{ width: isHovered ? '100%' : '0%' }}
            />
         </div>

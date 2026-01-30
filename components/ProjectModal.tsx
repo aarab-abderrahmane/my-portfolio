@@ -68,7 +68,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-300 ">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/90 backdrop-blur-xl"
@@ -118,9 +118,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
       )}
 
       {/* Main Modal Container */}
+      <div className='overflow-hidden rounded-[48px] '>
+
       <div
       data-lenis-prevent
-      className="relative w-full max-w-6xl max-h-[90vh] overflow-y-auto glass rounded-[48px] border border-white/10 shadow-2xl animate-in zoom-in-95 duration-500 ">
+      className="relative custom-scroll w-full max-w-6xl max-h-[90vh] overflow-y-auto glass rounded-[48px] border border-white/10 shadow-2xl animate-in zoom-in-95 duration-500 ">
         {/* Hero Interactive Header */}
         <div className="relative h-[400px] w-full group overflow-hidden cursor-zoom-in" onClick={() => openLightbox(0)}>
           <img 
@@ -290,6 +292,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
         </div>
       </div>
 
+      </div>
+        
       <style>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
