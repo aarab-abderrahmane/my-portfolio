@@ -38,6 +38,7 @@ export const ContactSection: React.FC = () => {
 
   // 1. إنشاء FormData مباشرة من عناصر النموذج (الـ Inputs)
   const data = new FormData(e.currentTarget);
+  console.log(data)
   
   // 2. إضافة المفتاح البرمجي
   data.append("access_key", "8f18f2e6-8e5b-4929-b24e-3e234837dbb5");

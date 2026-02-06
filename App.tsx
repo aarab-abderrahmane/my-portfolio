@@ -14,6 +14,9 @@ import RippleCursor from './components/ui/RippleCursor'
 import {Skiper16} from "./components/ui/skiper-ui/skiper16"
 
 
+
+
+
 export const globalContext = createContext()
 
 const App: React.FC = () => {

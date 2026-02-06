@@ -21,6 +21,8 @@
   "registries": {
     "@wigggle-ui": "https://wigggle-ui.vercel.app/r/{name}.json",
     "@skiper-ui": "https://skiper-ui.com/registry/{name}.json",
-    "@react-bits": "https://reactbits.dev/r/{name}.json"
+    "@react-bits": "https://reactbits.dev/r/{name}.json",
+    "@magicui": "https://magicui.design/r/{name}",
+    "@aceternity": "https://ui.aceternity.com/registry/{name}.json"
   }
 }

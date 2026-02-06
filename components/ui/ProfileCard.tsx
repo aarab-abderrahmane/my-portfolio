@@ -360,7 +360,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       '--sunpillar-2': 'hsl(53, 100%, 69%)',
       '--sunpillar-3': 'hsl(93, 100%, 69%)',
       '--sunpillar-4': 'hsl(176, 100%, 76%)',
-      '--sunpillar-5': 'hsl(228, 100%, 74%)',
+      '--sunpillar-5': 'hsl(228, 100%, 50%)',
       '--sunpillar-6': 'hsl(283, 100%, 73%)',
       '--sunpillar-clr-1': 'var(--sunpillar-1)',
       '--sunpillar-clr-2': 'var(--sunpillar-2)',
@@ -430,8 +430,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     overflow: 'hidden',
     backgroundImage: `radial-gradient(
       farthest-corner circle at var(--pointer-x) var(--pointer-y),
-      hsl(248, 25%, 80%) 12%,
-      hsla(207, 40%, 30%, 0.8) 90%
+      hsl(0, 0%, 100%) 12%,
+      hsl(0, 0%, 0%) 90%
     )`,
     mixBlendMode: 'overlay',
     filter: 'brightness(0.8) contrast(1.2)',
@@ -457,12 +457,11 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
           }}
         />
       )}
-      <div ref={shellRef} className="relative z-[1] group">
+      <div ref={shellRef} className="relative z-[1] group ">
         <section
-          className="grid relative overflow-hidden"
+          className="grid relative overflow-hidden w-full "
           style={{
-            height: '80svh',
-            maxHeight: '540px',
+            height: '100%',
             aspectRatio: '0.718',
             borderBottomLeftRadius:"50px",
             backgroundBlendMode: 'color-dodge, normal, normal, normal',
@@ -488,7 +487,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
           }}
         >
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 "
             style={{
               backgroundImage: 'var(--inner-gradient)',
               backgroundColor: 'rgba(0, 0, 0, 0.9)',
@@ -596,12 +595,12 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                 pointerEvents: 'none'
               }}
             >
-              <div className="w-full absolute flex flex-col " style={{ top: '70%', display: 'flex', gridArea: 'auto' }}>
+              <div className="w-full absolute flex flex-col " style={{ top: '75%', display: 'flex', gridArea: 'auto' }}>
                 <h3
                   className="font-semibold  m-0 break-word px-3  "
                   style={{
                     fontSize: 'min(5svh, 3em)',
-                    backgroundImage: 'linear-gradient(to bottom, #fff, #6f6fbe)',
+                    backgroundImage: 'linear-gradient(to bottom, #ffffff, #95be6f)',
                     backgroundSize: '1em 1.5em',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -612,6 +611,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                     pointerEvents: 'auto'
                   }}
                 >
+                  
                   {name}
                 </h3>
                 <p

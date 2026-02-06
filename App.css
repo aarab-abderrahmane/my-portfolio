@@ -28,3 +28,56 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(204, 255, 0, 0.6) !important;
 }
+
+
+ 
+.border-trail {
+  position: relative;
+  padding: 1px; /* border thickness */
+}
+
+.border-trail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+/* moving dot / trail */
+.trail {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 0 12px rgba(255, 255, 255, 0.6),
+    0 0 24px rgba(255, 255, 255, 0.4);
+
+  offset-path: path(
+     H calc(100% - 20)
+     Q 100% 0 100% 20
+     V calc(100% - 20)
+     Q 100% 100% calc(100% - 20) 100%
+     H 20
+     Q 0 100% 0 calc(100% - 20)
+     V 20
+     Q 0 0 20 0
+  );
+
+  offset-distance: 0%;
+  animation: borderTrail 6s linear infinite;
+}
+
+@keyframes borderTrail {
+  to {
+    offset-distance: 100%;
+  }
+}
+

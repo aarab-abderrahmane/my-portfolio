@@ -13,11 +13,12 @@ interface HeroProps {
 
 
 
-
-
 export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   return (
     <div className="relative flex flex-col items-center justify-center text-center min-h-[100vh] w-full overflow-hidden ">
+
+
+ 
       {/* --- ANIMATED BACKGROUND LAYER --- */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Moving Technical Grid with smooth mask */}
@@ -29,7 +30,8 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
               linear-gradient(to bottom, #fafcf78d 1px, transparent 0px)
             `,
             backgroundSize: '60px 60px',
-            maskImage: 'linear-gradient(to bottom, black 40%, transparent 90%)',
+            maskImage: 'linear-gradient(to bottom , black 40%, transparent 90%) ',
+            
             WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 90%)'
           }}
         />

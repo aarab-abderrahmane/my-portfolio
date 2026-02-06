@@ -16,6 +16,10 @@ import {
   Fingerprint
 } from 'lucide-react';
 
+
+
+
+
 export const AboutSection: React.FC = () => {
   return (
     <div className="relative py-20 md:py-32 ">
@@ -35,12 +39,13 @@ export const AboutSection: React.FC = () => {
         </p>
       </div>
 
+      
       {/* Main Bento Grid - Mobile First */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8 auto-rows-[minmax(200px,260px)] relative z-10 px-4 md:px-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8 auto-rows-[minmax(200px,660px)]  md:auto-rows-[minmax(200px,560px)] lg:auto-rows-[minmax(200px,270px)]  relative z-10 px-4 md:px-0">
         
         {/* Profile Identity - The "Deep Emerald" Core */}
         <div className="md:col-span-2 lg:col-span-8 lg:row-span-2 glass-2.0 rounded-[40px] md:rounded-[56px] max-h-[550px] overflow-hidden group flex flex-col md:flex-row  hover:border-emerald-500/40 transition-all duration-700">
-          <div className="w-full md:w-1/2 relative h-[350px] md:h-full min-h-[350px] md:min-h-[450px] overflow-hidden">
+          <div className="w-full md:w-1/2 relative h-[350px] md:h-full min-h-[350px] md:min-h-[450px] overflow-hidden ">
      
               <ProfileCard/>
 
@@ -49,7 +54,7 @@ export const AboutSection: React.FC = () => {
           <div className="w-full md:w-1/2 p-8 flex flex-col  bg-[#0a0a0a]/40 backdrop-blur-3xl relative">
         
             <h4 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-white tracking-tight leading-snug">
-              Building <span className="text-emerald-400">scalable web applications</span> and crafting intuitive user experiences.
+              Building <span className="text-[#CCFF00]">scalable web applications</span> and crafting intuitive user experiences.
             </h4>
             <p className="text-white/50 leading-relaxed font-medium mb-8 md:mb-10 text-base md:text-lg">
               Full Stack Developer dedicated to building scalable web applications. I specialize in bridging the gap between complex logic and intuitive <span className="text-white italic">user experiences</span>, ensuring <span className="text-white italic">high performance</span> and robustness in every digital solution I deliver.
@@ -68,7 +73,13 @@ export const AboutSection: React.FC = () => {
         </div>
 
         {/* Stats Module - The "Solar Gold" Energy */}
-        <div  data-lenis-prevent className="md:col-span-1 lg:col-span-4  lg:row-span-2 relative  rounded-[40px] md:rounded-[56px] p-8  flex flex-col justify-between group cursor-pointer transition-all duration-700 bg-gradient-to-br from-gray-400 via-gray-600 to-gray-800   shadow-[0_0_80px_rgba(148,255,41,0.15)] hover:shadow-[0_0_100px_rgba(148,255,41,0.3)] hover:-translate-y-2 min-h-[300px] max-h-[600px] overflow-y-scroll md:min-h-0">
+        
+        <div className="md:col-span-1 lg:col-span-4  lg:row-span-2 relative rounded-[40px] md:rounded-[56px] rounded-[40px] md:rounded-[56px] border-trail">
+
+         <span className="trail" />
+
+        <div  data-lenis-prevent className=" w-full h-full rounded-[40px] md:rounded-[56px] p-8  flex flex-col justify-between group cursor-pointer transition-all duration-700 bg-gradient-to-br from-gray-400 via-gray-600 to-gray-800   shadow-[0_0_80px_rgba(148,255,41,0.15)] hover:shadow-[0_0_100px_rgba(148,255,41,0.3)] hover:-translate-y-2 min-h-[300px] max-h-[600px] overflow-y-scroll md:min-h-0">
+         
           <div className="absolute inset-0 opacity-20 mix-blend-soft-light pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
           
           <div className="flex justify-between items-start relative z-10">
@@ -85,17 +96,23 @@ export const AboutSection: React.FC = () => {
             </div>
         </div>
 
+        </div>  
+
+
+
+      
+
         {/* Pillar: Architecture - The "Azure" Focus
-        <div className="md:col-span-1 lg:col-span-4 lg:row-span-1 glass-2.0 rounded-[40px] md:rounded-[56px] border border-white/5 p-8 md:p-12 group hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all duration-500 relative overflow-hidden">
-          <div className="absolute -right-10 -top-10 w-32 md:w-40 h-32 md:h-40 bg-cyan-500/10 blur-[50px] md:blur-[60px] rounded-full group-hover:bg-cyan-500/20 transition-all" />
-          <div className="w-14 md:w-16 h-14 md:h-16 bg-cyan-500/10 rounded-[20px] md:rounded-3xl flex items-center justify-center text-cyan-400 mb-8 md:mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all border border-cyan-500/20">
-            <Layers className="w-6 md:w-8 h-6 md:h-8" />
-          </div>
-          <h4 className="text-xl md:text-2xl font-bold mb-4 md:mb-5 text-white tracking-tight">Systemic Integrity</h4>
-          <p className="text-sm md:text-base text-white/40 leading-relaxed font-medium group-hover:text-white/70 transition-colors">
-            Reliable Architecture I build modular, maintainable applications focusing on clean code and efficient data flow. My goal is to create stable systems that are easy to debug, test, and scale as the user base grows.
-          </p>
-        </div> */}
+        // <div className="md:col-span-1 lg:col-span-4 lg:row-span-1 glass-2.0 rounded-[40px] md:rounded-[56px] border border-white/5 p-8 md:p-12 group hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all duration-500 relative overflow-hidden">
+        //   <div className="absolute -right-10 -top-10 w-32 md:w-40 h-32 md:h-40 bg-cyan-500/10 blur-[50px] md:blur-[60px] rounded-full group-hover:bg-cyan-500/20 transition-all" />
+        //   <div className="w-14 md:w-16 h-14 md:h-16 bg-cyan-500/10 rounded-[20px] md:rounded-3xl flex items-center justify-center text-cyan-400 mb-8 md:mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all border border-cyan-500/20">
+        //     <Layers className="w-6 md:w-8 h-6 md:h-8" />
+        //   </div>
+        //   <h4 className="text-xl md:text-2xl font-bold mb-4 md:mb-5 text-white tracking-tight">Systemic Integrity</h4>
+        //   <p className="text-sm md:text-base text-white/40 leading-relaxed font-medium group-hover:text-white/70 transition-colors">
+        //     Reliable Architecture I build modular, maintainable applications focusing on clean code and efficient data flow. My goal is to create stable systems that are easy to debug, test, and scale as the user base grows.
+        //   </p>
+        // </div> */}
 
         {/* Tech Stack Visual - The "Deep Indigo" Dashboard */}
         <div className="md:col-span-1 lg:col-span-4 lg:row-span-2  overflow-hidden relative group hover:border-indigo-500/30 transition-all duration-700">
