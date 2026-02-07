@@ -159,14 +159,7 @@ export const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
             </button>
           </div>
 
-          <div className="mt-10 flex flex-col items-center gap-4 text-center">
-            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20">System Status: Nominal</p>
-            <div className="flex gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#CCFF00] animate-pulse" />
-              <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
-              <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
-            </div>
-          </div>
+          
         </div>
       </div>
     </>

@@ -89,7 +89,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           OPEN TO WORK
         </div>
         
-        <h1 className="text-6xl md:text-[9rem] font-black tracking-tighter leading-[0.8] mb-12">
+        <h1 className="text-6xl md:text-[8rem] font-black tracking-tighter leading-[0.8] mb-12">
           I build <span className="text-white/20 italic font-light">scalable</span> full-stack <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-lime-400 to-emerald-500">Solutions.</span>
         </h1>

@@ -17,7 +17,8 @@ import {
 } from 'lucide-react';
 
 
-
+import RotatingText from './RotatingText';
+import CircularText from './CircularText';
 
 
 export const AboutSection: React.FC = () => {
@@ -41,17 +42,17 @@ export const AboutSection: React.FC = () => {
 
       
       {/* Main Bento Grid - Mobile First */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8 auto-rows-[minmax(200px,660px)]  md:auto-rows-[minmax(200px,560px)] lg:auto-rows-[minmax(200px,270px)]  relative z-10 px-4 md:px-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8   relative z-10 px-4 md:px-0">
         
         {/* Profile Identity - The "Deep Emerald" Core */}
-        <div className="md:col-span-2 lg:col-span-8 lg:row-span-2 glass-2.0 rounded-[40px] md:rounded-[56px] max-h-[550px] overflow-hidden group flex flex-col md:flex-row  hover:border-emerald-500/40 transition-all duration-700">
-          <div className="w-full md:w-1/2 relative h-[350px] md:h-full min-h-[350px] md:min-h-[450px] overflow-hidden ">
+        <div className=" md:col-span-2 lg:col-span-8  glass-2.0 max-h-[550px]   group flex flex-col md:flex-row  hover:border-emerald-500/40 transition-all duration-700 h-[350px] md:h-full min-h-[350px] md:min-h-[450px]">
+          <div className="z-50 absolute w-full md:w-1/2 relative h-[350px] md:h-full min-h-[350px] md:min-h-[450px]  ">
      
               <ProfileCard/>
 
           </div>
           
-          <div className="w-full md:w-1/2 p-8 flex flex-col  bg-[#0a0a0a]/40 backdrop-blur-3xl relative">
+          <div className="w-full h-full  md:w-1/2 p-8 flex flex-col  bg-[#0a0a0a]/40 backdrop-blur-3xl relative  " style={{borderTopRightRadius: "56px" , borderBottomRightRadius : "56px"}}>
         
             <h4 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-white tracking-tight leading-snug">
               Building <span className="text-[#CCFF00]">scalable web applications</span> and crafting intuitive user experiences.
@@ -72,28 +73,43 @@ export const AboutSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Stats Module - The "Solar Gold" Energy */}
+
+
+        {/*Technology stack*/}
         
-        <div className="md:col-span-1 lg:col-span-4  lg:row-span-2 relative rounded-[40px] md:rounded-[56px] rounded-[40px] md:rounded-[56px] border-trail">
+        <div className="box md:col-span-1 lg:col-span-4   auto-rows-min  relative rounded-[56px] overflow-hidden border border-white/20 bg-white/10 backdrop-blur-lg    ">
 
-         <span className="trail" />
+     
 
-        <div  data-lenis-prevent className=" w-full h-full rounded-[40px] md:rounded-[56px] p-8  flex flex-col justify-between group cursor-pointer transition-all duration-700 bg-gradient-to-br from-gray-400 via-gray-600 to-gray-800   shadow-[0_0_80px_rgba(148,255,41,0.15)] hover:shadow-[0_0_100px_rgba(148,255,41,0.3)] hover:-translate-y-2 min-h-[300px] max-h-[600px] overflow-y-scroll md:min-h-0">
+        <div   className=" w-full   p-6  flex flex-col gap-12  group cursor-pointer transition-all duration-700 shadow-[0_0_80px_rgba(148,255,41,0.15)] hover:shadow-[0_0_100px_rgba(148,255,41,0.3)]  h-auto max-h-[600px] overflow-hidden md:min-h-0">
          
-          <div className="absolute inset-0 opacity-20 mix-blend-soft-light pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
           
-          <div className="flex justify-between items-start relative z-10">
-            <div className="px-3 py-1 bg-black/10 rounded-full text-[9px] font-black uppercase tracking-widest text-black/60 backdrop-blur-sm">
-              technology stack
-            </div>
+          <div className="flex  items-center gap-2 relative z-10   ">
+          <h1 className='font-bold text-xl'>Technology</h1>
+                  <RotatingText
+                    texts={['Tech', 'Proficiency', 'Expertise', 'I Build With']}
+                    mainClassName="px-2 sm:px-2 md:px-3 bg-white text-black font-bold overflow-hidden py-0.5 sm:py-1  justify-center rounded-[56px]"
+                    staggerFrom={"last"}
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    exit={{ y: "-120%" }}
+                    staggerDuration={0.025}
+                    splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                    rotationInterval={2000}
+                  />
           </div>
-              <div className="mt-10 md:mt-4 flex flex-wrap gap-2 md:gap-3">
+
+
+              <div className=" flex flex-wrap gap-2 md:gap-3  mb-4">
               {['React 19', 'JavaScript (ES6+)', 'TypeScript', 'Node.js', 'Express.js', 'Tailwind CSS 4', 'Gemini AI API', 'OpenRouter', 'MongoDB Atlas', 'MySQL', 'PHP', 'Python', 'Framer Motion', 'GSAP', '@dnd-kit', 'Context API', 'Git', 'GitHub', 'Postman', 'REST APIs', 'Vercel'].map(tag => (
-                <span key={tag} className="px-3 md:px-4 py-1.5 md:py-2 bg-white/5 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] font-black uppercase tracking-widest text-white/20 border border-white/5 hover:border-white/20 hover:text-white transition-all cursor-default">
+                <span key={tag} className="px-3 z-50 md:px-4 py-3 bg-white/5 rounded-xl hover:cursor-pointer md:rounded-2xl text-[9px] md:text-[10px] font-black uppercase tracking-widest text-white/80 border border-white/5 hover:border-white/20 hover:text-white transition-all ">
                   {tag}
                 </span>
               ))}
-            </div>
+              </div>
+
+
         </div>
 
         </div>  
@@ -114,11 +130,21 @@ export const AboutSection: React.FC = () => {
         //   </p>
         // </div> */}
 
-        {/* Tech Stack Visual - The "Deep Indigo" Dashboard */}
-        <div className="md:col-span-1 lg:col-span-4 lg:row-span-2  overflow-hidden relative group hover:border-indigo-500/30 transition-all duration-700">
+        {/* Download CV */}
+        <div className="md:col-span-1  lg:col-span-4 flex justify-center items-center relative overflow-hidden min-h-[300px]  p-6">
+              <div className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+              <CircularText
+                text="DOWNLOAD*CV*NOW*"
+                onHover="speedUp"
+                spinDuration={20}
+                className="custom-class"
+              />    
+              </div>
 
-            
-              <Skiper48/>
+
+                     <a href="/files/aarab-abderrahmane-cv.pdf" download className="bg-[#CCFF00] text-black rounded-full p-4 hover:scale-110 duration-300 cursor-pointer absolute">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+                     </a>
             
       
         </div>
@@ -126,7 +152,7 @@ export const AboutSection: React.FC = () => {
       
 
         {/* Experience / History - The "Professional Timeline" */}
-        <div className="md:col-span-2 lg:col-span-8 lg:row-span-1 glass-2.0 rounded-[40px] md:rounded-[56px] border border-white/10 p-8 md:p-14 flex flex-col md:flex-row gap-12 md:gap-16 items-center group hover:bg-white/[0.02] transition-all">
+        <div className="md:col-span-2    lg:col-span-8  glass-2.0 rounded-[40px] md:rounded-[56px] border border-white/10 p-8 md:p-14 flex flex-col md:flex-row gap-12 md:gap-16 items-center group hover:bg-white/[0.02] transition-all">
           <div className="w-full md:w-1/3 relative text-center md:text-left">
              <div className="text-6xl md:text-8xl font-black text-white tracking-tighter mb-4 group-hover:scale-105 transition-transform duration-700">02+</div>
              <p className="text-[10px] md:text-xs font-bold text-white/30 uppercase tracking-[0.4em] leading-relaxed">Years of specialized technical development.</p>
@@ -170,6 +196,11 @@ export const AboutSection: React.FC = () => {
              </div>
           </div>
         </div>
+
+
+
+
+
 
       </div>
 
