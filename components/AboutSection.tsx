@@ -42,17 +42,17 @@ export const AboutSection: React.FC = () => {
 
       
       {/* Main Bento Grid - Mobile First */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8   relative z-10 px-4 md:px-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12  gap-6 md:gap-8   relative z-10 px-4 md:px-0">
         
         {/* Profile Identity - The "Deep Emerald" Core */}
-        <div className=" md:col-span-2 lg:col-span-8  glass-2.0 max-h-[550px]   group flex flex-col md:flex-row  hover:border-emerald-500/40 transition-all duration-700 h-[350px] md:h-full min-h-[350px] md:min-h-[450px]">
-          <div className="z-50 absolute w-full md:w-1/2 relative h-[350px] md:h-full min-h-[350px] md:min-h-[450px]  ">
+        <div className=" md:col-span-2 lg:col-span-8     group flex flex-col   md:flex-row transition-all duration-700  ">
+          <div className="z-50    md:w-1/2   w-full   ">
      
               <ProfileCard/>
 
           </div>
           
-          <div className="w-full h-full  md:w-1/2 p-8 flex flex-col  bg-[#0a0a0a]/40 backdrop-blur-3xl relative  " style={{borderTopRightRadius: "56px" , borderBottomRightRadius : "56px"}}>
+          <div className="w-full   md:w-1/2 p-8 flex flex-col   backdrop-blur-3xl relative  max-h-[500px] sm:max-h-[400px] md:max-h-[100%]" >
         
             <h4 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-white tracking-tight leading-snug">
               Building <span className="text-[#CCFF00]">scalable web applications</span> and crafting intuitive user experiences.
@@ -142,9 +142,9 @@ export const AboutSection: React.FC = () => {
               </div>
 
 
-                     <a href="/files/aarab-abderrahmane-cv.pdf" download className="bg-[#CCFF00] text-black rounded-full p-4 hover:scale-110 duration-300 cursor-pointer absolute">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
-                     </a>
+              <a href="/files/aarab-abderrahmane-cv.pdf" download className="bg-[#CCFF00] text-black rounded-full p-4 hover:scale-110 duration-300 cursor-pointer absolute">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+              </a>
             
       
         </div>

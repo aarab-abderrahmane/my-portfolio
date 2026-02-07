@@ -122,3 +122,21 @@
 		--gradY: 0%;
 	}
 }
+
+
+
+
+@media (max-width: 768px) {
+  .profile-card {
+
+        border-radius: 50px !important;
+
+  }
+}
+
+@media ( min-width : 768px){
+  .profile-card {
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+  }
+}

@@ -459,11 +459,10 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       )}
       <div ref={shellRef} className="relative z-[1] group ">
         <section
-          className="grid relative overflow-hidden w-full "
+          className="grid relative overflow-hidden w-full profile-card h-[350px] w-[350px] md:h-full md:w-full"
           style={{
             height: '100%',
             aspectRatio: '0.718',
-            borderBottomLeftRadius:"50px",
             backgroundBlendMode: 'color-dodge, normal, normal, normal',
             boxShadow:
               'rgba(0, 0, 0, 0.8) calc((var(--pointer-from-left) * 10px) - 3px) calc((var(--pointer-from-top) * 20px) - 6px) 20px -5px',
@@ -504,7 +503,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 
             {/* Avatar content */}
             <div
-              className="overflow-visible"
+              className="overflow-visible "
               style={{
                 mixBlendMode: 'luminosity',
                 transform: 'translateZ(2px)',
@@ -595,12 +594,11 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                 pointerEvents: 'none'
               }}
             >
-              <div className="w-full absolute flex flex-col " style={{ top: '75%', display: 'flex', gridArea: 'auto' }}>
+              <div className="w-full absolute flex flex-col " style={{ top: '80%', display: 'flex', gridArea: 'auto' }}>
                 <h3
-                  className="font-semibold  m-0 break-word px-3  "
+                  className="font-semibold  m-0 mb-3 break-word px-3  text-2xl md:text-3xl "
                   style={{
-                    fontSize: 'min(5svh, 3em)',
-                    backgroundImage: 'linear-gradient(to bottom, #ffffff, #95be6f)',
+                    backgroundImage: 'linear-gradient(to bottom, #ff0000, #95be6f)',
                     backgroundSize: '1em 1.5em',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -615,25 +613,30 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                   {name}
                 </h3>
                 <p
-                  className="font-semibold whitespace-nowrap mx-auto w-min"
-                  style={{
-                    position: 'relative',
-                    top: '-12px',
-                    fontSize: '16px',
-                    margin: '0 auto',
-                    backgroundImage: 'linear-gradient(to bottom, #fff, #4a4ac0)',
-                    backgroundSize: '1em 1.5em',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    WebkitBackgroundClip: 'text',
-                    display: 'block',
-                    gridArea: 'auto',
-                    borderRadius: '0',
-                    pointerEvents: 'auto'
-                  }}
-                >
-                  {title}
-                </p>
+                      className="font-semibold whitespace-nowrap mx-auto w-min"
+                      style={{
+                        position: 'relative',
+                        top: '-12px',
+                        fontSize: '18px',
+                        margin: '0 auto',
+                        display: 'block',
+                        backgroundColor: 'red', // الخلفية الحمراء ستظهر هنا
+                        padding: '2px 8px',    // أضف حواف لتبدو الخلفية أجمل
+                        borderRadius: '4px'    // اختيار اختياري
+                      }}
+                    >
+                      <span
+                        style={{
+                          backgroundImage: 'linear-gradient(to bottom, #fff, #4a4ac0)',
+                          WebkitTextFillColor: 'transparent',
+                          WebkitBackgroundClip: 'text',
+                          backgroundClip: 'text',
+                        }}
+                      >
+                        {title}
+                      </span>
+                    </p>
+
               </div>
             </div>
           </div>
