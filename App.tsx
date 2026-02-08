@@ -13,8 +13,7 @@ import RippleCursor from './components/ui/RippleCursor'
 
 import {Skiper16} from "./components/ui/skiper-ui/skiper16"
 
-
-
+import { LoadingScreen } from './components/landingScreen';
 
 
 export const globalContext = createContext()
@@ -22,6 +21,9 @@ export const globalContext = createContext()
 const App: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+
+  // loading screen 
+  const [isLoading, setIsLoading] = useState(true);
 
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
 
@@ -51,11 +53,21 @@ const App: React.FC = () => {
     <globalContext.Provider value={{isProjectModalOpen,setIsProjectModalOpen}}>
       {/* overflow-x-hidden */}
     <div className="min-h-screen relative   bg-[#0f0f0f] text-white">
+         
 
+
+        
+      {isLoading && <LoadingScreen onFinish={() => setIsLoading(false)} />}
+
+
+      <div className={`transition-all duration-[1500ms] cubic-bezier(0.2, 0.8, 0.2, 1) bg-black ${
+        isLoading ? 'opacity-0 scale-[0.98] pointer-events-none' : 'opacity-100 '
+      }`}>
+      
 
       {/* Background Ambient Glows */}
-      <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-lime-400/10 blur-[150px] pointer-events-none rounded-full" />
-      <div className="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 blur-[150px] pointer-events-none rounded-full" />
+      {/* <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-lime-400/10 blur-[150px] pointer-events-none rounded-full" />
+      <div className="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-lime-600/10 blur-[150px] pointer-events-none rounded-full" /> */}
 
       {/* High-Fidelity Navigation */}
       {
@@ -71,7 +83,7 @@ const App: React.FC = () => {
 
 
       {/* Main Content - Centered */}
-      <main className="max-w-7xl mx-auto px-6 pb-12 relative z-10">
+      <main className="max-w-7xl mx-auto px-6 pb-12 relative z-10 ">
         <section id="skills" className="mt-20">
           <SkillsShowcase 
             onSkillSelect={(id) => {
@@ -108,6 +120,8 @@ const App: React.FC = () => {
       </main>
 
       <Footer />
+    </div>
+
     </div>
 
     </globalContext.Provider>

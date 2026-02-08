@@ -4,7 +4,9 @@ import { ArrowRight } from 'lucide-react';
 
 import CountUp from './ui/CountUp';
 
-import GradientText from './ui/GradientText'
+
+
+import Beams from './Beams';
 
 
 interface HeroProps {
@@ -22,7 +24,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
       {/* --- ANIMATED BACKGROUND LAYER --- */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Moving Technical Grid with smooth mask */}
-        <div 
+        {/* <div 
           className="absolute inset-0 opacity-[0.2]" 
           style={{ 
             backgroundImage: `
@@ -34,8 +36,18 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
             
             WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 90%)'
           }}
-        />
-        
+        /> */}
+
+         <Beams
+            beamWidth={3}
+            beamHeight={30}
+            beamNumber={20}
+            lightColor="#CCFF00"
+            speed={2}
+            noiseIntensity={1.75}
+            scale={0.2}
+            rotation={30}
+          />
 
 
         {/* Animated Scanning Beam */}
@@ -44,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
         </div> */}
 
         {/* Floating Data Nodes (Neural Network Feel) */}
-        <div className="absolute inset-0" style={{ maskImage: 'linear-gradient(to bottom, black 30%, transparent 85%)', WebkitMaskImage: 'linear-gradient(to bottom, black 30%, transparent 85%)' }}>
+        {/* <div className="absolute inset-0" style={{ maskImage: 'linear-gradient(to bottom, black 30%, transparent 85%)', WebkitMaskImage: 'linear-gradient(to bottom, black 30%, transparent 85%)' }}>
           {[...Array(8)].map((_, i) => (
             <div 
               key={i}
@@ -59,7 +71,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
               }}
             />
           ))}
-        </div>
+        </div> */}
 
         {/* Interactive Noise Texture */}
         <div
@@ -130,12 +142,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
               <p className="text-4xl md:text-5xl font-black text-white group-hover:text-lime-400 transition-colors duration-500 tracking-tighter">
               
               {/* Grandient text + counter animation */}
-                <GradientText
-                  colors={["#ffffff","#CCFF00","#fafaf8"]}
-                  animationSpeed={4}
-                  showBorder={false}
-                  className="custom-class"
-                >
+         
                 {stat.symbol}{stat.val < 10 ? "0" : ""}
                 <CountUp
                   from={0}
@@ -146,7 +153,6 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
                   className="count-up-text"
                   startCounting={1}
                 />
-                </GradientText>
 
                 </p>
               <p className="text-[10px] uppercase tracking-[0.4em] text-white/20 font-bold mt-2">{stat.label}</p>

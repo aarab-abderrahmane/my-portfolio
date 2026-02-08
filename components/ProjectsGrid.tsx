@@ -16,6 +16,9 @@ interface ProjectDashboardProps {
   setActiveFilter: (f: string | null) => void;
 }
 
+
+
+
 export const ProjectsGrid: React.FC<ProjectDashboardProps> = ({ projects, activeFilter, setActiveFilter }) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -45,6 +48,7 @@ export const ProjectsGrid: React.FC<ProjectDashboardProps> = ({ projects, active
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+
   return (
     <div className="w-full">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
@@ -52,7 +56,10 @@ export const ProjectsGrid: React.FC<ProjectDashboardProps> = ({ projects, active
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase tracking-widest text-lime-400 font-bold mb-6">
             Featured Projects
           </div>
-          <h2 className="text-6xl font-black mb-4 tracking-tighter text-white">Digital <span className="text-white/20 italic font-light">Solutions.</span></h2>
+          <h2 className="text-6xl font-black mb-4 tracking-tighter text-white flex items-center ">Digital <span className="text-white/20 italic font-light">
+ 
+          Solutions.
+         </span></h2>
           <p className="text-white/40 text-lg max-w-lg leading-relaxed font-medium">
             Practical software solutions built with a focus on clean architecture, intuitive user interfaces, and efficient performance.
           </p>
