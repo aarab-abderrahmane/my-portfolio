@@ -43,7 +43,7 @@ export const LoadingScreen: React.FC<{ onFinish: () => void }> = ({ onFinish }) 
       }`}
     >
       {/* Subtle Ambient Light (Mimicking Screen Glow) */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,1)_0%,_transparent_50%)]" />
+      {/* <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,1)_0%,_transparent_50%)]" /> */}
 
       {/* Centered Brand Icon - Pure & Static */}
       <div className={`transition-all duration-[1500ms] cubic-bezier(0.2, 0.8, 0.2, 1) ${
@@ -65,15 +65,15 @@ export const LoadingScreen: React.FC<{ onFinish: () => void }> = ({ onFinish }) 
           />
         </div>
         
-        {/* Progress Percentage - Hidden in OS boot but common for high-end loading */}
+        {/* Progress Percentage - Hidden in OS boot but common for high-end loading
         <div className="mt-4 flex justify-center">
            <span className="text-[10px] font-medium tracking-[0.2em] text-white/20 uppercase">
              {Math.round(progress)}%
            </span>
-        </div>
+        </div> */}
       </div>
 
-      {/* Interaction Hint (Optional, but adds to the Apple "Hello" feel) */}
+      {/* Interaction Hint */}
       <div className={`absolute bottom-16 transition-all duration-1000 delay-[1.5s] ${
         progress === 100 ? 'opacity-40 translate-y-0' : 'opacity-0 translate-y-4'
       }`}>

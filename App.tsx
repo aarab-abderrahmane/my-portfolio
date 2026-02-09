@@ -119,7 +119,12 @@ const App: React.FC = () => {
         </section>
       </main>
 
-      <Footer />
+      <section className="mt-24">
+          <Footer />
+
+      </section>
+
+
     </div>
 
     </div>

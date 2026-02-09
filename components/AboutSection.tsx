@@ -28,6 +28,10 @@ import CircularText from './CircularText';
 
 
 
+import { TextShimmerWave } from './motion-primitives/text-shimmer-wave';
+
+
+
 
 export const AboutSection: React.FC = () => {
   return (
@@ -41,7 +45,12 @@ export const AboutSection: React.FC = () => {
         </div>
         <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white mb-6 leading-[0.9] md:leading-none">
           Think <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#CCFF00] to-lime-600">User</span>,<br/>
-          <span className="text-white/20 italic font-light">Write Clean Code.</span>
+          <span className="text-white/20 italic font-light">
+            <TextShimmerWave className='' duration={1}>
+              Write Clean Code.
+            </TextShimmerWave>
+
+          </span>
         </h2>
         <p className="text-white/40 text-lg md:text-xl max-w-2xl font-medium leading-relaxed">
           I bridge the gap between intuitive user interfaces and complex backend logic to build seamless digital solutions.
@@ -138,7 +147,7 @@ export const AboutSection: React.FC = () => {
                   </svg>
                 </Cursor>
                 <CursorFollow>
-                  <div className="bg-white text-black font-bold px-2 py-2 rounded-3xl text-sm shadow-lg">
+                  <div className="bg-white text-black font-bold px-2 py-2 rounded-3xl text-sm shadow-lg  backdrop-blur-md ">
                     Skills
                   </div>
                 </CursorFollow>
@@ -169,7 +178,7 @@ export const AboutSection: React.FC = () => {
                 text="DOWNLOAD*CV*NOW*"
                 onHover="speedUp"
                 spinDuration={20}
-                className="custom-class"
+                className="custom-class "
               />    
               </div>
 

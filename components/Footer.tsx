@@ -1,140 +1,154 @@
 
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Twitter, ArrowUp, Zap, Mail, Instagram } from 'lucide-react';
+import { ArrowUp, Copy, Check, Globe } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const [localTime, setLocalTime] = useState<string>('');
+  const [isHovered, setIsHovered] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [time, setTime] = useState('');
 
+  // Update time for a specific timezone (e.g., Europe/Zurich)
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      setLocalTime(now.toLocaleTimeString('en-US', { 
-        hour12: false, 
-        hour: '2-digit', 
+      const formatter = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/Zurich',
+        hour: '2-digit',
         minute: '2-digit',
-        timeZoneName: 'short'
-      }));
+        second: '2-digit',
+        hour12: false,
+      });
+      setTime(formatter.format(now));
     };
+
     updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
+    const timer = setInterval(updateTime, 1000);
+    return () => clearInterval(timer);
   }, []);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText('abderrahmanerb.contact@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navLinks = [
-    { name: 'Home', href: 'home' },
-    { name: 'Projects', href: 'projects' },
-    { name: 'Skills', href: 'skills' },
-    { name: 'About', href: 'about' },
-    { name: 'Contact', href: 'contact' },
-  ];
-
-  const socialLinks = [
-    { icon: <Github size={18} />, href: '#', label: 'Github' },
-    { icon: <Linkedin size={18} />, href: '#', label: 'LinkedIn' },
-  ];
-
   return (
-    <footer className="relative mt-40 pt-20 pb-10 overflow-hidden border-t border-white/5 bg-[#0a0a0a]/50 backdrop-blur-3xl">
-      {/* Background Decor */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-lime-400/50 to-transparent" />
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-lime-400/5 blur-[100px] rounded-full pointer-events-none" />
+    <footer 
+      className="relative w-full bg-[#CCFF00]/90 text-black pt-52 pb-12  overflow-hidden selection:bg-black selection:text-[#FF5C00] z-20"
+      style={{ 
+        clipPath: 'polygon(0 100px, 100% 0, 100% 100%, 0 100%)',
+        marginTop: '-140px'
+      }}
+    >
+      {/* Subtle Grain Overlay */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" 
+           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
 
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col items-center">
+        
+        {/* Massive Interaction Zone */}
+        <div 
+          className="relative w-full group cursor-pointer text-center mb-24"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={handleCopy}
+        >
+          <div className="overflow-hidden">
+            <h2 className={`text-[15vw] font-[900] tracking-[-0.06em] leading-[0.8] uppercase transition-all duration-700 ease-expo ${isHovered ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}>
+              Let's Talk
+            </h2>
+            <h2 className={`absolute inset-0 text-[15vw] font-[900] tracking-[-0.06em] leading-[0.8] uppercase transition-all duration-700 ease-expo flex items-center justify-center ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
+              {copied ? 'Copied!' : 'Say Hello'}
+            </h2>
+          </div>
           
-          {/* Brand & Mission */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 p-2 bg-[#CCFF00] rounded-full flex items-center justify-center text-black">
-                 <img src="./public/icons/myLogo2.png"></img>
-              </div>
-              <span className="text-2xl font-black tracking-tighter"><span  className='text-[#CCFF00]'>Ar</span>toFolio</span>
-            </div>
-            <p className="text-white/40 text-lg leading-relaxed max-w-sm">
-              Developing robust full-stack solutions and intuitive user interfaces that solve real-world problems.
-            </p>
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 w-fit">
-              <div className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#CCFF00] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-400"></span>
-              </div>
-              <span className="text-[11px] font-black uppercase tracking-widest text-white/60">
-                Available for freelance projects and full-time opportunities.
-              </span>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div className="lg:col-span-2 space-y-6">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Navigation</h4>
-            <ul className="space-y-4">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <button 
-                    onClick={() => document.getElementById(link.href)?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-white/40 hover:text-lime-400 transition-colors font-bold text-sm"
-                  >
-                    {link.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Connect */}
-          <div className="lg:col-span-2 space-y-6">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Socials</h4>
-            <ul className="space-y-4">
-              {socialLinks.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} className="flex items-center gap-3 text-white/40 hover:text-white transition-colors group">
-                    <span className="group-hover:scale-110 transition-transform">{link.icon}</span>
-                    <span className="font-bold text-sm">{link.label}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Status/Clock */}
-          <div className="lg:col-span-3 space-y-6 text-right lg:text-left">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Current Status</h4>
-            <div className="space-y-2">
-              <p className="text-3xl font-black tracking-tighter text-white">{localTime}</p>
-              <p className="text-[10px] font-bold text-white/20 uppercase tracking-widest">Local Operating Time</p>
-            </div>
-            <button 
-              onClick={scrollToTop}
-              className="mt-4 inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-[#CCFF00] hover:text-black transition-all group"
-            >
-              Back to Top
-              <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
-            </button>
+          <div className="mt-8 mono text-xs md:text-sm font-black tracking-[0.4em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">
+            {copied ? 'Email successfully stored' : 'Click to copy direct endpoint'}
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[10px] font-bold text-white/20 uppercase tracking-[0.4em]">
-            &copy; {new Date().getFullYear()} ArtoFolio
-          </p>
-          {/* <div className="flex items-center gap-8">
-             <a href="#" className="text-[10px] font-bold text-white/20 hover:text-white uppercase tracking-widest transition-colors">Privacy Policy</a>
-             <a href="#" className="text-[10px] font-bold text-white/20 hover:text-white uppercase tracking-widest transition-colors">Terms of Service</a>
-          </div> */}
-          <div className="flex items-center gap-2 text-white/20">
-            <span className="text-[10px] font-bold uppercase tracking-widest">Built with</span>
-             <div className="w-8 h-8 p-1 bg-[#CCFF00] rounded-full flex items-center justify-center text-black">
-                 <img src="/icons/myLogo2.png"></img>
-              </div>
-            <span className="text-[10px] font-bold uppercase tracking-widest">AArab abderrahmane</span>
+        {/* Action Bar */}
+        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-12 mb-32">
+          <div className="flex flex-col gap-2 order-2 md:order-1 items-center md:items-start">
+            <div className="mono text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Direct Line</div>
+            <a 
+              href="mailto:abderrahmanerb.contact@gmail.com" 
+              className="text-2xl md:text-4xl   font-black tracking-tight hover:opacity-60 transition-opacity border-b-4 border-black pb-1"
+            >
+              abderrahmanerb.contact@gmail.com
+            </a>
           </div>
+
+          <button 
+            onClick={scrollToTop}
+            className="group relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center bg-black text-[#FF5C00] rounded-full order-1 md:order-2 hover:scale-110 transition-transform duration-500 active:scale-90"
+          >
+            <div className="absolute inset-0 border-2 border-dashed border-lime-500 rounded-full animate-[spin_10s_linear_infinite]" />
+            <ArrowUp className="w-10 h-10 text-white group-hover:-translate-y-2 transition-transform duration-500" />
+            <span className="absolute bottom-6 mono text-[8px] text-white tracking-widest">TOP</span>
+          </button>
+        </div>
+
+        {/* Separator */}
+        <div className="w-full h-[2px] bg-black/10 mb-12" />
+
+        {/* Telemetry & Legal */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start">
+          
+          {/* Column 1: Local Context */}
+          <div className="flex flex-col gap-6">
+            <div className="flex items-center gap-3">
+              <Globe className="w-4 h-4" />
+              <div className="mono text-[10px] font-black uppercase tracking-widest">
+                Local Time — {time}
+              </div>
+            </div>
+            <div className="mono text-[10px] font-black uppercase tracking-widest opacity-40">
+              Based in Zurich, Switzerland <br />
+              Working Worldwide
+            </div>
+          </div>
+
+          {/* Column 2: Socials with animation */}
+          <div className="flex flex-wrap justify-center gap-x-12 gap-y-4 mono text-[10px] font-black uppercase tracking-widest">
+            {['Instagram', 'Twitter', 'Linkedin', 'Github'].map((social) => (
+              <a 
+                key={social} 
+                href="#" 
+                className="group relative overflow-hidden h-4"
+              >
+                <div className="transition-transform duration-500 group-hover:-translate-y-full">
+                  {social}
+                </div>
+                <div className="absolute top-0 left-0 transition-transform duration-500 translate-y-full group-hover:translate-y-0 text-white bg-black px-1">
+                  /{social}
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* Column 3: Copyright */}
+          <div className="flex flex-col md:items-end gap-2 text-center md:text-right">
+             <div className="mono text-[10px] font-black uppercase tracking-widest">
+               © {new Date().getFullYear()} SUPERDESIGN INC.
+             </div>
+             <div className="mono text-[9px] font-black uppercase tracking-[0.2em] opacity-30">
+               All rights reserved — No 001-442
+             </div>
+          </div>
+
         </div>
       </div>
+
+      <style>{`
+        .ease-expo {
+          transition-timing-function: cubic-bezier(0.87, 0, 0.13, 1);
+        }
+      `}</style>
     </footer>
   );
 };

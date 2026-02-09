@@ -1,8 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { Send, Mail, MapPin, Linkedin, Github, Twitter, Terminal, Cpu, Globe, ArrowRight, Copy, Check, ShieldCheck, Zap, Activity } from 'lucide-react';
-import { eventNames } from 'process';
-import { fromTheme } from 'tailwind-merge';
+
+
+
+
+import { TextShimmerWave } from './motion-primitives/text-shimmer-wave';
+
 
 export const ContactSection: React.FC = () => {
   const [focusedField, setFocusedField] = useState<string | null>(null);
@@ -73,7 +77,7 @@ export const ContactSection: React.FC = () => {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
            style={{ backgroundImage: `radial-gradient(circle, #fff 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto ">
+      <div className="relative z-10 max-w-6xl mx-auto ">
         
         {/* Top Header HUD */}
   
@@ -86,7 +90,11 @@ export const ContactSection: React.FC = () => {
               <div className="absolute -left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-lime-400 to-transparent opacity-20" />
               <h2 className="text-7xl md:text-8xl font-black tracking-tighter leading-[0.85] mb-8">
                 Let’s <br/>
-                <span className="text-white/20 italic font-light">Work</span> <br/>
+                <span className="text-white/20 italic font-light">
+                 <TextShimmerWave  duration={1.3}>
+                  Work
+                </TextShimmerWave>
+                </span> <br/>
                 <span className="text-[#CCFF00]">Together.</span>
               </h2>
               <p className="text-lg text-white/40 leading-relaxed font-medium max-w-sm">

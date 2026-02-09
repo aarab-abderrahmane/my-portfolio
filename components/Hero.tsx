@@ -93,7 +93,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
 
       {/* --- CONTENT LAYER --- */}
       {/* pt-32 added to push content down and clear the fixed navbar */}
-      <div className="relative z-20 flex flex-col items-center px-6 max-w-7xl mx-auto pt-32 pb-20">
+      <div className="relative z-20 flex flex-col items-center px-6 max-w-7xl mx-auto pt-32 pb-20  w-screen">
         <div className="mb-10  tracking-widest inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase tracking-[0.4em] text-lime-400 font-black backdrop-blur-md">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
@@ -102,7 +102,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           OPEN TO WORK
         </div>
         
-        <h1 className="text-6xl md:text-[7rem] w-[80%] font-black tracking-tighter leading-[0.8] mb-12">
+        <h1 className="text-6xl  h-[200px] md:h-[300px] md:text-[7rem] w-[80%] font-black tracking-tighter leading-[0.8] mb-12">
           I build <span className="text-white/20 italic font-light">
           
           <TextType 
@@ -146,36 +146,37 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
              </p>
           </div>
         </div>
+            
+          <div className="  mt-32 grid grid-cols-2 md:grid-cols-4 gap-16 max-w-5xl w-full pt-16 mx-auto">
+            {[
+              { val: 2  , label: 'Years Runtime',symbol:"+" },
+              { val: 6, label: 'Nodes Deployed',symbol:"" },
+              { val: 9, label: 'Efficiency',symbol:"%" },
+              { val: 0, label: 'Failures',symbol:"" },
+            ].map((stat, i) => (
+              <div key={i} className="text-center group cursor-default">
+                <p className="text-4xl md:text-5xl font-black text-white group-hover:text-lime-400 transition-colors duration-500 tracking-tighter">
+                
+                {/* Grandient text + counter animation */}
+          
+                  {stat.symbol}{stat.val < 10 ? "0" : ""}
+                  <CountUp
+                    from={0}
+                    to={stat.val}
+                    separator=","
+                    direction="up"
+                    duration={1}
+                    className="count-up-text"
+                    startCounting={1}
+                  />
 
-        
-        <div className="mt-32 grid grid-cols-2 md:grid-cols-4 gap-16 max-w-5xl w-full pt-16">
-          {[
-            { val: 2  , label: 'Years Runtime',symbol:"+" },
-            { val: 6, label: 'Nodes Deployed',symbol:"" },
-            { val: 9, label: 'Efficiency',symbol:"%" },
-            { val: 0, label: 'Failures',symbol:"" },
-          ].map((stat, i) => (
-            <div key={i} className="text-center group cursor-default">
-              <p className="text-4xl md:text-5xl font-black text-white group-hover:text-lime-400 transition-colors duration-500 tracking-tighter">
-              
-              {/* Grandient text + counter animation */}
-         
-                {stat.symbol}{stat.val < 10 ? "0" : ""}
-                <CountUp
-                  from={0}
-                  to={stat.val}
-                  separator=","
-                  direction="up"
-                  duration={1}
-                  className="count-up-text"
-                  startCounting={1}
-                />
+                  </p>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-white/40 font-bold mt-2">{stat.label}</p>
+              </div>
+            ))}
+          </div>
 
-                </p>
-              <p className="text-[10px] uppercase tracking-[0.4em] text-white/20 font-bold mt-2">{stat.label}</p>
-            </div>
-          ))}
-        </div>
+
       </div>
 
       <style>{`
