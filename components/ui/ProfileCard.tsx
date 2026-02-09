@@ -61,9 +61,9 @@ interface TiltEngine {
 }
 
 const ProfileCardComponent: React.FC<ProfileCardProps> = ({
-  avatarUrl = 'images/1762981553824-removebg-preview.png',
+  avatarUrl = '/images/1762981553824-removebg-preview.png',
   iconUrl = '/icons/iconpattern.png',
-  grainUrl = 'icons/grain.webp',
+  grainUrl = '/icons/grain.webp',
   innerGradient,
   behindGlowEnabled = true,
   behindGlowColor,
