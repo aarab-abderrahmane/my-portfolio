@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
           >
             <div className="w-12 h-12 p-2 bg-[#CCFF00] rounded-full flex items-center justify-center text-black shadow-[0_0_20px_rgba(163,230,53,0.3)] group-hover:scale-110 transition-transform duration-500">
               {/* <Zap fill="currentColor" size={20} /> */}
-              <img src="./public/icons/myLogo2.png"></img>
+              <img src="/icons/myLogo2.png"></img>
             </div>
             <div className="hidden md:block">
               <span className="text-xl font-black tracking-tighter block leading-none"><span className='text-[#CCFF00]'>Ar</span>toFolio</span>

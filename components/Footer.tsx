@@ -129,7 +129,7 @@ export const Footer: React.FC = () => {
           <div className="flex items-center gap-2 text-white/20">
             <span className="text-[10px] font-bold uppercase tracking-widest">Built with</span>
              <div className="w-8 h-8 p-1 bg-[#CCFF00] rounded-full flex items-center justify-center text-black">
-                 <img src="./public/icons/myLogo2.png"></img>
+                 <img src="/icons/myLogo2.png"></img>
               </div>
             <span className="text-[10px] font-bold uppercase tracking-widest">AArab abderrahmane</span>
           </div>
