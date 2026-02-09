@@ -16,6 +16,10 @@ import {Skiper16} from "./components/ui/skiper-ui/skiper16"
 import { LoadingScreen } from './components/landingScreen';
 
 
+import { FAQSection } from './components/FAQsection';
+
+
+
 export const globalContext = createContext()
 
 const App: React.FC = () => {
@@ -116,6 +120,11 @@ const App: React.FC = () => {
 
         <section id="contact" className="mt-40">
           <ContactSection />
+        </section>
+
+        <section  className="mt-40">
+            <FAQSection />
+
         </section>
       </main>
 

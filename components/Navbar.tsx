@@ -62,7 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               <img src="/icons/myLogo2.png"></img>
             </div>
             <div className="hidden md:block">
-              <span className="text-xl font-black tracking-tighter block leading-none"><span className='text-[#CCFF00]'>Ar</span>toFolio</span>
+              <span className="text-xl font-black tracking-tighter block leading-none">ArtoFolio</span>
               <span className="text-[14px] font-black uppercase  tracking-[0.2em] text-[#CCFF00] transition-opacity">Aarab Abderrahmane</span>
             </div>
           </div>
