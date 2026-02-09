@@ -20,6 +20,14 @@ import {
 import RotatingText from './RotatingText';
 import CircularText from './CircularText';
 
+        import {
+  Cursor,
+  CursorFollow,
+  CursorProvider,
+} from './ui/cursor';
+
+
+
 
 export const AboutSection: React.FC = () => {
   return (
@@ -39,6 +47,9 @@ export const AboutSection: React.FC = () => {
           I bridge the gap between intuitive user interfaces and complex backend logic to build seamless digital solutions.
         </p>
       </div>
+
+
+
 
       
       {/* Main Bento Grid - Mobile First */}
@@ -77,11 +88,11 @@ export const AboutSection: React.FC = () => {
 
         {/*Technology stack*/}
         
-        <div className="box md:col-span-1 lg:col-span-4   auto-rows-min  relative rounded-[56px] overflow-hidden border border-white/20 bg-white/10 backdrop-blur-lg    ">
+        <div className="box md:col-span-1 lg:col-span-4   auto-rows-min  relative rounded-[56px] border border-white/20 bg-white/10 backdrop-blur-lg    ">
 
      
 
-        <div   className=" w-full   p-6  flex flex-col gap-12  group cursor-pointer transition-all duration-700 shadow-[0_0_80px_rgba(148,255,41,0.15)] hover:shadow-[0_0_100px_rgba(148,255,41,0.3)]  h-auto max-h-[600px] overflow-hidden md:min-h-0">
+        <div   className=" w-full   p-6  flex flex-col gap-12 rounded-[56px] group cursor-pointer transition-all duration-700 shadow-[0_0_80px_rgba(148,255,41,0.15)] hover:shadow-[0_0_100px_rgba(148,255,41,0.3)]  h-auto max-h-[600px] overflow-hidden md:min-h-0">
          
           
           <div className="flex  items-center gap-2 relative z-10   ">
@@ -112,6 +123,27 @@ export const AboutSection: React.FC = () => {
 
         </div>
 
+
+              <CursorProvider>
+                <Cursor>
+                  <svg
+                    className="size-6 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 40 40"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M1.8 4.4 7 36.2c.3 1.8 2.6 2.3 3.6.8l3.9-5.7c1.7-2.5 4.5-4.1 7.5-4.3l6.9-.5c1.8-.1 2.5-2.4 1.1-3.5L5 2.5c-1.4-1.1-3.5 0-3.3 1.9Z"
+                    />
+                  </svg>
+                </Cursor>
+                <CursorFollow>
+                  <div className="bg-white text-black font-bold px-2 py-2 rounded-3xl text-sm shadow-lg">
+                    Skills
+                  </div>
+                </CursorFollow>
+              </CursorProvider>
+
         </div>  
 
 
@@ -131,7 +163,7 @@ export const AboutSection: React.FC = () => {
         // </div> */}
 
         {/* Download CV */}
-        <div className="md:col-span-1  lg:col-span-4 flex justify-center items-center relative overflow-hidden min-h-[300px]  p-6">
+        <div className="md:col-span-1    lg:col-span-4 flex justify-center items-center relative overflow-hidden min-h-[300px]  p-6">
               <div className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
               <CircularText
                 text="DOWNLOAD*CV*NOW*"
@@ -148,6 +180,9 @@ export const AboutSection: React.FC = () => {
             
       
         </div>
+
+
+
 
       
 

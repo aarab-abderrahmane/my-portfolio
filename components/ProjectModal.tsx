@@ -68,7 +68,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-300 ">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 md:p-8 animate-in fade-in duration-300 ">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/90 backdrop-blur-xl"
@@ -118,11 +118,19 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
       )}
 
       {/* Main Modal Container */}
-      <div className='overflow-hidden rounded-[48px] '>
+      <div className='overflow-hidden rounded-[48px] relative'>
+        <div className="absolute top-10 right-10 flex gap-4 z-50">
+          <button 
+            onClick={(e) => { e.stopPropagation(); onClose(); }}
+            className="p-4 bg-black/50 backdrop-blur-2xl border border-white/10 rounded-3xl hover:bg-[#CCFF00] hover:text-black transition-all z-20"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
 
       <div
       data-lenis-prevent
-      className="relative custom-scroll w-full max-w-6xl max-h-[90vh] overflow-y-auto glass rounded-[48px] border border-white/10 shadow-2xl animate-in zoom-in-95 duration-500 ">
+      className="relative custom-scroll w-full md:max-w-6xl max-h-[90vh] overflow-y-auto glass rounded-[48px] border border-white/10 shadow-2xl animate-in zoom-in-95 duration-500 ">
         {/* Hero Interactive Header */}
         <div className="relative h-[400px] w-full group overflow-hidden cursor-zoom-in" onClick={() => openLightbox(0)}>
           <img 
@@ -131,23 +139,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-[#0f0f0f]/40 to-transparent" />
-          
-          <div className="absolute top-10 right-10 flex gap-4">
-            <button 
-              onClick={(e) => { e.stopPropagation(); onClose(); }}
-              className="p-4 bg-black/50 backdrop-blur-2xl border border-white/10 rounded-3xl hover:bg-[#CCFF00] hover:text-black transition-all z-20"
-            >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
 
           <div className="absolute bottom-12 left-12 right-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="max-w-2xl">
-              <div className="flex flex-wrap items-center gap-3 mb-6">
+              <div className="flex flex-wrap items-center gap-3 mb-6 ">
                 <span className="px-4 py-1.5 bg-[#CCFF00] text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-full shadow-[0_0_30px_rgba(163,230,53,0.3)]">
                   {project.category} Module
                 </span>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2 ">
                   {project.tags.map(tag => (
                     <span key={tag} className="px-4 py-1.5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full text-[10px] font-bold text-white/60 uppercase tracking-widest">
                       {tag}

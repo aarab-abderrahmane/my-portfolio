@@ -17,6 +17,13 @@ interface ProjectDashboardProps {
 }
 
 
+import {
+  Cursor,
+  CursorFollow,
+  CursorProvider,
+} from './ui/cursor';
+
+
 
 
 export const ProjectsGrid: React.FC<ProjectDashboardProps> = ({ projects, activeFilter, setActiveFilter }) => {
@@ -147,6 +154,9 @@ export const ProjectsGrid: React.FC<ProjectDashboardProps> = ({ projects, active
         />
 
       )}
+
+
+      
     </div>
   );
 };

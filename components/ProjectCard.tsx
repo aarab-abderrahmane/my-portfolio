@@ -49,13 +49,13 @@ export const ProjectCard: React.FC<ProjectModuleProps> = ({ project, onOpen }) =
         </div>
 
         {/* Top Header Navigation */}
-        <div className="absolute top-10 left-10 right-10 flex justify-between items-center z-40">
-          <div className="flex items-center gap-3 glass-heavy px-4 py-2 rounded-2xl border border-white/10">
+        <div className="absolute top-10 left-10 right-10 flex justify-end items-center z-40">
+          {/* <div className="flex items-center gap-3 glass-heavy px-4 py-2 rounded-2xl border border-white/10">
              <div className={`w-2 h-2 rounded-full bg-${project.accentClass} animate-pulse shadow-[0_0_10px_rgba(163,230,53,0.8)]`} />
              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/70">
                {project.category}::MDR
              </span>
-          </div>
+          </div> */}
           <div 
             className={`p-4 glass-heavy rounded-2xl border border-white/10 text-white transition-all duration-500 transform ${isHovered ? 'scale-110 -rotate-12 bg-white/10 border-white/20' : ''}`}
           >
