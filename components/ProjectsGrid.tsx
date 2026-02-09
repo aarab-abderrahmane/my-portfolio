@@ -56,8 +56,7 @@ export const ProjectsGrid: React.FC<ProjectDashboardProps> = ({ projects, active
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase tracking-widest text-lime-400 font-bold mb-6">
             Featured Projects
           </div>
-          <h2 className="text-6xl font-black mb-4 tracking-tighter text-white flex items-center ">Digital <span className="text-white/20 italic font-light">
- 
+          <h2 className="text-6xl font-black mb-4 tracking-tighter text-white flex flex-wrap items-center  ">Digital <span className="text-white/20 italic font-light ">  
           Solutions.
          </span></h2>
           <p className="text-white/40 text-lg max-w-lg leading-relaxed font-medium">

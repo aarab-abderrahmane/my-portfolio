@@ -7,6 +7,7 @@ import CountUp from './ui/CountUp';
 
 
 import Beams from './Beams';
+import TextType from './TextType';
 
 
 interface HeroProps {
@@ -101,9 +102,25 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           OPEN TO WORK
         </div>
         
-        <h1 className="text-6xl md:text-[8rem] font-black tracking-tighter leading-[0.8] mb-12">
-          I build <span className="text-white/20 italic font-light">scalable</span> full-stack <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-lime-400 to-emerald-500">Solutions.</span>
+        <h1 className="text-6xl md:text-[7rem] w-[80%] font-black tracking-tighter leading-[0.8] mb-12">
+          I build <span className="text-white/20 italic font-light">
+          
+          <TextType 
+            text={["scalable", "robust", "Elastic" , "extensible"]}
+            typingSpeed={120}
+            pauseDuration={1500}
+            showCursor
+            cursorCharacter="_"
+            texts={["Welcome to React Bits! Good to see you!","Build some amazing experiences!"]}
+            deletingSpeed={50}
+            variableSpeedEnabled={false}
+            variableSpeedMin={60}
+            variableSpeedMax={120}
+            cursorBlinkDuration={0.5}
+          />
+          
+          </span> full-stack <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-lime-300 to-lime-700 ">Solutions.</span>
         </h1>
         
         <div className="flex flex-col md:flex-row items-center gap-8">

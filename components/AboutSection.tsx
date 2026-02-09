@@ -32,7 +32,7 @@ export const AboutSection: React.FC = () => {
           Professional Persona
         </div>
         <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white mb-6 leading-[0.9] md:leading-none">
-          Think <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-green-300 to-[#CCFF00]">User</span>,<br/>
+          Think <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#CCFF00] to-lime-600">User</span>,<br/>
           <span className="text-white/20 italic font-light">Write Clean Code.</span>
         </h2>
         <p className="text-white/40 text-lg md:text-xl max-w-2xl font-medium leading-relaxed">

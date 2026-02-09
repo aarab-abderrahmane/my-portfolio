@@ -57,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
             onClick={() => scrollToSection('home')}
             className="group flex items-center gap-3 cursor-pointer z-[60]"
           >
-            <div className="w-14 h-14 p-2 bg-[#CCFF00] rounded-full flex items-center justify-center text-black shadow-[0_0_20px_rgba(163,230,53,0.3)] group-hover:scale-110 transition-transform duration-500">
+            <div className="w-12 h-12 p-2 bg-[#CCFF00] rounded-full flex items-center justify-center text-black shadow-[0_0_20px_rgba(163,230,53,0.3)] group-hover:scale-110 transition-transform duration-500">
               {/* <Zap fill="currentColor" size={20} /> */}
               <img src="./public/icons/myLogo2.png"></img>
             </div>

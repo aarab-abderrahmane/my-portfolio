@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-5 space-y-8">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 p-2 bg-[#CCFF00] rounded-full flex items-center justify-center text-black">
-                 <img src="./public/icons/logo.png"></img>
+                 <img src="./public/icons/myLogo2.png"></img>
               </div>
               <span className="text-2xl font-black tracking-tighter"><span  className='text-[#CCFF00]'>Ar</span>toFolio</span>
             </div>
@@ -129,7 +129,7 @@ export const Footer: React.FC = () => {
           <div className="flex items-center gap-2 text-white/20">
             <span className="text-[10px] font-bold uppercase tracking-widest">Built with</span>
              <div className="w-8 h-8 p-1 bg-[#CCFF00] rounded-full flex items-center justify-center text-black">
-                 <img src="./public/icons/logo.png"></img>
+                 <img src="./public/icons/myLogo2.png"></img>
               </div>
             <span className="text-[10px] font-bold uppercase tracking-widest">AArab abderrahmane</span>
           </div>
