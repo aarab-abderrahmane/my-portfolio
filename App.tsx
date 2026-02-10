@@ -17,7 +17,7 @@ import { LoadingScreen } from './components/landingScreen';
 
 
 import { FAQSection } from './components/FAQsection';
-
+import { ChatOverlay } from './components/ChatOverlary';
 
 
 export const globalContext = createContext()
@@ -30,6 +30,7 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
+   const [isChatActive, setIsChatActive] = useState(false);
 
   const filteredProjects = activeFilter 
     ? PROJECTS.filter(p => p.tags.includes(activeFilter) || p.category === activeFilter)
@@ -118,9 +119,19 @@ const App: React.FC = () => {
           <AboutSection />
         </section>
 
+
+
         <section id="contact" className="mt-40">
           <ContactSection />
         </section>
+
+      <button 
+        onClick={()=>setIsChatActive(true)}
+        className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 hover:border-orange hover:text-white transition-all group"
+      >
+        <span className="text-white">AI Chat</span>
+      </button>
+
 
         <section  className="mt-40">
             <FAQSection />
@@ -128,13 +139,14 @@ const App: React.FC = () => {
         </section>
       </main>
 
-      <section className="mt-24">
-          <Footer />
-
-      </section>
+   
+     <Footer />
 
 
     </div>
+
+      <ChatOverlay isActive={isChatActive} onClose={() => setIsChatActive(false)} />
+
 
     </div>
 
