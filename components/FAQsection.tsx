@@ -11,6 +11,8 @@ interface FAQItemProps {
   onClick: () => void;
 }
 
+import { VideoText } from "./ui/video-text"
+
 const FAQItem: React.FC<FAQItemProps> = ({ number, question, answer, tags, isOpen, onClick }) => {
   return (
     <div className="border-b border-white/10 group">
@@ -79,9 +81,13 @@ export const FAQSection: React.FC = () => {
       <div className="max-w-[1600px] mx-auto px-6">
         {/* Header like the SERVICES one in image */}
         <div className="flex items-center justify-between mb-24">
-          <h2 className="serif-heavy text-7xl md:text-[12rem] lg:text-[15rem] leading-none tracking-tighter uppercase opacity-100">
-            Inquiries
-          </h2>
+          {/* <h2 className="serif-heavy text-7xl md:text-[12rem] lg:text-[15rem] leading-none tracking-tighter uppercase opacity-100">
+                Inquiries
+          </h2>  */}
+          <div className="relative h-[220px] w-full overflow-hidden ">
+            <VideoText src="https://assets.mixkit.co/videos/18052/18052-720.mp4">Inquiries</VideoText>
+          </div>
+
           <div className="hidden md:block">
              <Star className="text-orange animate-spin-slow" size={120} fill="currentColor" strokeWidth={0} />
           </div>

@@ -14,6 +14,8 @@ import { ChatOverlay } from './components/ChatOverlary';
 import { Bot } from 'lucide-react';
 import Lenis from '@studio-freight/lenis'
 
+import {LoadingScreen} from './components/landingScreen'
+
 export const globalContext = createContext()
 
 const App: React.FC = () => {
@@ -73,14 +75,13 @@ const App: React.FC = () => {
 
 
         
-      {/* {isLoading && <LoadingScreen onFinish={() => setIsLoading(false)} />} */}
+      {isLoading && <LoadingScreen onFinish={() => setIsLoading(false)} />}
 
 
-      {/* <div className={`transition-all duration-[1500ms] cubic-bezier(0.2, 0.8, 0.2, 1) bg-black ${
+      <div className={`transition-all duration-[1500ms] cubic-bezier(0.2, 0.8, 0.2, 1) bg-black ${
         isLoading ? 'opacity-0 scale-[0.98] pointer-events-none' : 'opacity-100 '
       }`}>
-       */}
-       <div className='bg-black'>
+      
 
       {/* Background Ambient Glows */}
       {/* <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-lime-400/10 blur-[150px] pointer-events-none rounded-full" />
