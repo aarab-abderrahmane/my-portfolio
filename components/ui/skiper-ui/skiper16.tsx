@@ -10,35 +10,6 @@ import {globalContext} from "../../../App"
 
 import {ProjectCard} from "../../ProjectCard"
 
-// const projects = [
-//   {
-//     title: "Project 1",
-//     src: "/images/1762981553824.jpeg",
-//   },
-//   {
-//     title: "Project 2",
-//     src: "/images/1762981553824.jpeg",
-//   },
-//   {
-//     title: "Project 3",
-//     src: "/images/1762981553824.jpeg",
-//   },
-//   {
-//     title: "Project 4",
-//     src: "/images/lummi/img15.png",
-//   },
-//   {
-//     title: "Project 5",
-//     src: "/images/lummi/img12.png",
-//   },
-// ];
-
-      //  <div key={project.id} className={`${colSpan} p-2`}>
-      //           <ProjectCard project={project} onOpen={(p) => {
-      //              setSelectedProject(p) 
-      //              setIsProjectModalOpen(true)
-      //              }} />
-      //         </div>
 
 const StickyCard_001 = ({
   i,
@@ -100,11 +71,10 @@ const Skiper16 = ({projects , setSelectedProject}) => {
   const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ["start start", "end end"],
+    offset: ["start start", "end start"],
   });
 
   return (
-    <ReactLenis root>
       <main
         ref={container}
         className="relative flex w-full flex-col items-center justify-center "
@@ -123,7 +93,8 @@ const Skiper16 = ({projects , setSelectedProject}) => {
                 i={i}
                 project={project}
                 progress={scrollYProgress}
-                range={[i * 0.25, 1]}
+                range={[i * 0.25, (i + 1) * 0.25]}
+
                 targetScale={targetScale}
                 setSelectedProject={setSelectedProject}
               />
@@ -136,7 +107,6 @@ const Skiper16 = ({projects , setSelectedProject}) => {
           </div>
         )}
       </main>
-    </ReactLenis>
   );
 };
 

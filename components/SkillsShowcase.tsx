@@ -32,12 +32,12 @@ const SkillButton: React.FC<{
       <p className={`font-extrabold text-lg tracking-tight transition-colors ${selectedSkillId === skill.id ? 'text-black' : 'text-white'}`}>
         {skill.name}
       </p>
-      <div className="flex items-center gap-2">
+      {/* <div className="flex items-center gap-2">
         <div className={`w-1 h-1 rounded-full ${selectedSkillId === skill.id ? 'bg-black/60' : 'bg-lime-400'}`}></div>
         <p className={`text-[8px] font-black uppercase tracking-[0.2em] ${selectedSkillId === skill.id ? 'text-black/60' : 'text-white/40'}`}>
           {skill.level}
         </p>
-      </div>
+      </div> */}
     </div>
   </button>
 );
