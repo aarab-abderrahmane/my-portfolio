@@ -78,12 +78,12 @@ const StickyCard_001 = ({
           scale,
         }}
         className=" relative mt-14 flex  origin-top flex-col 
-            h-[85vh] max-h-[550px] w-[92vw]           /* mobile */
+            h-[85vh] max-h-[600px] w-[92vw]           /* mobile */
             sm:w-[85vw]     /* large phones */
             md:w-[700px]    /* tablets */
-            lg:w-[820px]    /* mini laptops */
-            xl:w-[900px]    /* laptops */
-            2xl:h-[560px] 2xl:w-[1040px] /* desktops */
+            lg:w-[820px]   /* mini laptops */
+            xl:w-[900px]   /* laptops */
+            2xl:h-[600px] 2xl:w-[1040px] /* desktops */
         "
       >
                  <ProjectCard project={project} onOpen={(p) => {

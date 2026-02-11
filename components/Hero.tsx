@@ -15,6 +15,11 @@ interface HeroProps {
 }
 
 
+import { ShinyButton } from "./shiny-button";
+
+
+
+
 
 export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   return (
@@ -93,7 +98,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
 
       {/* --- CONTENT LAYER --- */}
       {/* pt-32 added to push content down and clear the fixed navbar */}
-      <div className="relative z-20 flex flex-col items-center px-6 max-w-7xl mx-auto pt-32 pb-20  w-screen">
+      <div className="relative z-20 flex flex-col items-center px-6 max-w-7xl mx-auto pt-32 lg:pt-40 pb-20  w-screen">
         <div className="mb-10  tracking-widest inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase tracking-[0.4em] text-lime-400 font-black backdrop-blur-md">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
@@ -102,7 +107,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           OPEN TO WORK
         </div>
         
-        <h1 className="text-6xl  h-[200px] md:h-[300px] md:text-[7rem] w-[80%] font-black tracking-tighter leading-[0.8] mb-12">
+        <h1 className="text-6xl  h-[200px] md:h-[300px] md:text-[7rem] lg:text-[8rem] w-[80%] font-black tracking-tighter leading-[0.8] mb-12">
           I build <span className="text-white/20 italic font-light">
           
           <TextType 
@@ -123,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-lime-300 to-lime-700 ">Solutions.</span>
         </h1>
         
-        <div className="flex flex-col md:flex-row items-center gap-8">
+        <div className="flex flex-col md:flex-row items-center gap-8 mt-12">
           <button 
             onClick={onCtaClick}
             className="group relative flex items-center gap-6 px-12 py-6 bg-white text-black font-black uppercase tracking-[0.2em] text-xs rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_30px_60px_rgba(255,255,255,0.1)]"
@@ -133,21 +138,15 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
             <div className="absolute top-0 left-[-100%] w-full h-full bg-[#CCFF00] transition-all duration-500 group-hover:left-0"></div>
           </button>
           
-          <div className="flex items-center gap-4 px-8 py-5 glass rounded-full border border-white/5 backdrop-blur-3xl">
-             <div className="flex -space-x-4">
-               {[1,2,3].map(i => (
-                 <div key={i} className="w-10 h-10 rounded-full border-2 border-[#0a0a0a] bg-zinc-800 overflow-hidden shadow-xl">
-                    <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="client" />
-                 </div>
-               ))}
-             </div>
-             <p className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">
-               Trusted by <span className="text-white">Elite Teams</span>
-             </p>
+          <div className="flex items-center   ">
+            
+
+                 <ShinyButton  className='h-[70px]' onClick={() => alert("Button clicked!")}>Get Inr Touch</ShinyButton>
+
           </div>
         </div>
             
-          <div className="  mt-32 grid grid-cols-2 md:grid-cols-4 gap-16 max-w-5xl w-full pt-16 mx-auto">
+          <div className="  mt-32 grid grid-cols-2 md:grid-cols-4 gap-16 max-w-5xl w-full pt-6 mx-auto">
             {[
               { val: 2  , label: 'Years Runtime',symbol:"+" },
               { val: 6, label: 'Nodes Deployed',symbol:"" },

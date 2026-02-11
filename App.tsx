@@ -18,6 +18,7 @@ import { LoadingScreen } from './components/landingScreen';
 
 import { FAQSection } from './components/FAQsection';
 import { ChatOverlay } from './components/ChatOverlary';
+import { Bot } from 'lucide-react';
 
 
 export const globalContext = createContext()
@@ -125,12 +126,7 @@ const App: React.FC = () => {
           <ContactSection />
         </section>
 
-      <button 
-        onClick={()=>setIsChatActive(true)}
-        className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 hover:border-orange hover:text-white transition-all group"
-      >
-        <span className="text-white">AI Chat</span>
-      </button>
+
 
 
         <section  className="mt-40">
@@ -146,7 +142,40 @@ const App: React.FC = () => {
     </div>
 
       <ChatOverlay isActive={isChatActive} onClose={() => setIsChatActive(false)} />
+             <style>{`
+        @keyframes float-playful {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-12px); }
+        }
+        .animate-float-playful {
+          animation: float-playful 4s ease-in-out infinite;
+        }
+        @keyframes spin-dashed {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-dashed {
+          animation: spin-dashed 12s linear infinite;
+        }
+      `}</style>
 
+      {/* Playful Flat Circular AI Button */}
+      <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[90] flex items-center justify-center animate-float-playful">
+        {/* Decorative Rotating Ring */}
+        <div className="absolute inset-[-8px] md:inset-[-12px] border-[3px] border-dashed border-orange/40 rounded-full animate-spin-dashed pointer-events-none" />
+
+        {/* Main Button */}
+        <button
+          onClick={() => setIsChatActive(!isChatActive)}
+          className="relative group outline-none focus:outline-none flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-orange rounded-full border-[4px] border-white shadow-[0_8px_20px_rgba(0,255,38,0.4)] transition-all duration-300 hover:scale-110 active:scale-95"
+          aria-label="Toggle AI Chat"
+        >
+          {/* Inner face/icon */}
+          <div className="relative flex items-center justify-center w-full h-full">
+             <Bot className="w-8 h-8 md:w-10 md:h-10 text-white transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-110" strokeWidth={2.5} />
+          </div>
+        </button>
+      </div>
 
     </div>
 
