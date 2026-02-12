@@ -30,6 +30,9 @@ import CircularText from './CircularText';
 
 import { TextShimmerWave } from './motion-primitives/text-shimmer-wave';
 
+import { GenerationProvider } from "./context/generation-context"
+import { ProjectFolder } from "./project-folder"
+
 
 
 
@@ -158,22 +161,9 @@ export const AboutSection: React.FC = () => {
 
 
       
-
-        {/* Pillar: Architecture - The "Azure" Focus
-        // <div className="md:col-span-1 lg:col-span-4 lg:row-span-1 glass-2.0 rounded-[40px] md:rounded-[56px] border border-white/5 p-8 md:p-12 group hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all duration-500 relative overflow-hidden">
-        //   <div className="absolute -right-10 -top-10 w-32 md:w-40 h-32 md:h-40 bg-cyan-500/10 blur-[50px] md:blur-[60px] rounded-full group-hover:bg-cyan-500/20 transition-all" />
-        //   <div className="w-14 md:w-16 h-14 md:h-16 bg-cyan-500/10 rounded-[20px] md:rounded-3xl flex items-center justify-center text-cyan-400 mb-8 md:mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all border border-cyan-500/20">
-        //     <Layers className="w-6 md:w-8 h-6 md:h-8" />
-        //   </div>
-        //   <h4 className="text-xl md:text-2xl font-bold mb-4 md:mb-5 text-white tracking-tight">Systemic Integrity</h4>
-        //   <p className="text-sm md:text-base text-white/40 leading-relaxed font-medium group-hover:text-white/70 transition-colors">
-        //     Reliable Architecture I build modular, maintainable applications focusing on clean code and efficient data flow. My goal is to create stable systems that are easy to debug, test, and scale as the user base grows.
-        //   </p>
-        // </div> */}
-
         {/* Download CV */}
-        <div className="md:col-span-1    lg:col-span-4 flex justify-center items-center relative overflow-hidden min-h-[300px]  p-6">
-              <div className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+        <div className="md:col-span-1  lg:col-span-4 flex justify-center items-center relative overflow-hidden min-h-[300px]  ">
+              {/* <div className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
               <CircularText
                 text="DOWNLOAD*CV*NOW*"
                 onHover="speedUp"
@@ -186,7 +176,23 @@ export const AboutSection: React.FC = () => {
               <a href="/files/aarab-abderrahmane-cv.pdf" download className="bg-[#CCFF00] text-black rounded-full p-4 hover:scale-110 duration-300 cursor-pointer absolute">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
               </a>
-            
+             */}
+
+
+                     <GenerationProvider>
+                       <ProjectFolder
+                         project={{ id: "1", title: "My Project", clipCount: 5, createdAt: "2025-01-01", images: ["https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2554.jpg?semt=ais_hybrid&w=740&q=80"
+                           , "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2554.jpg?semt=ais_hybrid&w=740&q=80",
+                            "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2554.jpg?semt=ais_hybrid&w=740&q=80", 
+                            "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2554.jpg?semt=ais_hybrid&w=740&q=80",
+                             "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2554.jpg?semt=ais_hybrid&w=740&q=80"] }}
+                         index={0}
+                         onClick={() => console.log("clicked")}
+                         onRemove={() => console.log("removed")}
+                         onRename={(title) => console.log("renamed:", title)}
+                       />
+                     </GenerationProvider>
+             
       
         </div>
 

@@ -16,6 +16,8 @@ import Lenis from '@studio-freight/lenis'
 
 import {LoadingScreen} from './components/landingScreen'
 
+
+
 export const globalContext = createContext()
 
 const App: React.FC = () => {
@@ -128,9 +130,11 @@ const App: React.FC = () => {
           />
         </section>
 
+
         <section id="about" className="mt-40">
           <AboutSection />
         </section>
+
 
 
 

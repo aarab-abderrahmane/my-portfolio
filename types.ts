@@ -26,3 +26,17 @@ export interface Skill {
   projects: string[]; // IDs of projects using this skill
   level: 'Expert' | 'Advanced' | 'Intermediate';
 }
+
+
+
+export interface Folder {
+  id: string
+  title: string
+  clipCount: number
+  createdAt: string
+  images: string[]
+  isGenerating?: boolean
+  progress?: number
+  eta?: string
+  isFailed?: boolean
+}
