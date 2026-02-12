@@ -2,6 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp, Copy, Check, Globe } from 'lucide-react';
 
+import { Component } from "./button-rotate";
+
+
+
 export const Footer: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -38,7 +42,7 @@ export const Footer: React.FC = () => {
 
   return (
     <footer 
-      className="relative w-full bg-[#CCFF00]/90 text-black pt-52 pb-12  overflow-hidden selection:bg-black selection:text-[#FF5C00] z-20"
+      className="relative w-full bg-[#CCFF00]/90 text-black pt-52 pb-12  overflow-hidden selection:bg-black selection:text-white z-20"
       style={{ 
         clipPath: 'polygon(0 100px, 100% 0, 100% 100%, 0 100%)',
         marginTop: '-140px'
@@ -72,7 +76,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Action Bar */}
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-12 mb-32">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-12 mb-32">
           <div className="flex flex-col gap-2 order-2 md:order-1 items-center md:items-start">
             <div className="mono text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Direct Line</div>
             <a 
@@ -83,14 +87,25 @@ export const Footer: React.FC = () => {
             </a>
           </div>
 
-          <button 
+          {/* <button 
             onClick={scrollToTop}
             className="group relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center bg-black text-[#FF5C00] rounded-full order-1 md:order-2 hover:scale-110 transition-transform duration-500 active:scale-90"
           >
             <div className="absolute inset-0 border-2 border-dashed border-lime-500 rounded-full animate-[spin_10s_linear_infinite]" />
             <ArrowUp className="w-10 h-10 text-white group-hover:-translate-y-2 transition-transform duration-500" />
             <span className="absolute bottom-6 mono text-[8px] text-white tracking-widest">TOP</span>
-          </button>
+          </button> */}
+
+          <div onClick={scrollToTop} className='relative order-1 md:order-2 '>
+
+               <Component />
+
+          </div>
+
+      
+
+
+
         </div>
 
         {/* Separator */}
@@ -100,32 +115,31 @@ export const Footer: React.FC = () => {
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start">
           
           {/* Column 1: Local Context */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 items-center">
             <div className="flex items-center gap-3">
               <Globe className="w-4 h-4" />
-              <div className="mono text-[10px] font-black uppercase tracking-widest">
+              <div className="mono text-[20px] font-black uppercase tracking-widest">
                 Local Time — {time}
               </div>
             </div>
-            <div className="mono text-[10px] font-black uppercase tracking-widest opacity-40">
-              Based in Zurich, Switzerland <br />
-              Working Worldwide
+            <div className="mono text-[16px] font-black uppercase tracking-widest opacity-40">
+              Based in Morocco 
             </div>
           </div>
 
           {/* Column 2: Socials with animation */}
-          <div className="flex flex-wrap justify-center gap-x-12 gap-y-4 mono text-[10px] font-black uppercase tracking-widest">
-            {['Instagram', 'Twitter', 'Linkedin', 'Github'].map((social) => (
+          <div className="flex flex-wrap justify-center gap-x-12 gap-y-4 mono text-[16px] font-black uppercase tracking-widest">
+            {[ 'Linkedin', 'Github'].map((social) => (
               <a 
                 key={social} 
                 href="#" 
-                className="group relative overflow-hidden h-4"
+                className="group relative overflow-hidden h-6 w-[100px] text-center"
               >
                 <div className="transition-transform duration-500 group-hover:-translate-y-full">
                   {social}
                 </div>
-                <div className="absolute top-0 left-0 transition-transform duration-500 translate-y-full group-hover:translate-y-0 text-white bg-black px-1">
-                  /{social}
+                <div className="absolute top-0 left-0 transition-transform duration-500 translate-y-full group-hover:translate-y-0 text-white bg-black px-3">
+                  {social}
                 </div>
               </a>
             ))}
@@ -133,11 +147,11 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: Copyright */}
           <div className="flex flex-col md:items-end gap-2 text-center md:text-right">
-             <div className="mono text-[10px] font-black uppercase tracking-widest">
-               © {new Date().getFullYear()} SUPERDESIGN INC.
+             <div className="mono text-[16px] font-black uppercase tracking-widest">
+               © {new Date().getFullYear()} AARAB ABDERRAHMANE.
              </div>
-             <div className="mono text-[9px] font-black uppercase tracking-[0.2em] opacity-30">
-               All rights reserved — No 001-442
+             <div className="mono text-[14px] font-black uppercase tracking-[0.2em] opacity-30">
+               All rights reserved
              </div>
           </div>
 

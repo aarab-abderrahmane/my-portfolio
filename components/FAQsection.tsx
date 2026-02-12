@@ -23,7 +23,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ number, question, answer, tags, isOpe
         <div className="flex items-start gap-8">
           <span className="mono text-orange text-xs md:text-sm font-bold mt-2 md:mt-4">({number})</span>
           <div className="flex flex-col">
-            <h3 className={`serif-heavy text-4xl md:text-6xl lg:text-7xl uppercase tracking-tighter transition-all duration-500 ${isOpen ? 'text-orange' : 'text-white'}`}>
+            <h3 className={`serif-heavy text-4xl md:text-6xl lg:text-7xl uppercase tracking-tighter transition-all duration-500 ${isOpen ? 'text-lime-400' : 'text-white'}`}>
               {question}
             </h3>
             <div className="flex flex-wrap gap-2 mt-4">
@@ -85,11 +85,11 @@ export const FAQSection: React.FC = () => {
                 Inquiries
           </h2>  */}
           <div className="relative h-[220px] w-full overflow-hidden ">
-            <VideoText src="https://assets.mixkit.co/videos/18052/18052-720.mp4">Inquiries</VideoText>
+            <VideoText src="https://www.pexels.com/download/video/4196231/">Inquiries</VideoText>
           </div>
 
           <div className="hidden md:block">
-             <Star className="text-orange animate-spin-slow" size={120} fill="currentColor" strokeWidth={0} />
+             <Star className="text-lime-400 animate-spin-slow" size={120} fill="currentColor" strokeWidth={0} />
           </div>
         </div>
 

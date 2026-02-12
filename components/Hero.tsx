@@ -128,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-lime-300 to-lime-700 ">Solutions.</span>
         </h1>
         
-        <div className="flex flex-col md:flex-row items-center gap-8 2xl:mt-12">
+        <div className="flex flex-col md:flex-row items-center gap-8 md:mt-6 2xl:mt-12">
           <button 
             onClick={onCtaClick}
             className="group relative flex items-center gap-6 px-12 py-6 bg-white text-black font-black uppercase tracking-[0.2em] text-xs rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_30px_60px_rgba(255,255,255,0.1)]"
@@ -141,12 +141,12 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           <div className="flex items-center   ">
             
 
-                 <ShinyButton  className='h-[70px]' onClick={() => alert("Button clicked!")}>Get Inr Touch</ShinyButton>
+                 <ShinyButton  className='h-[70px]' onClick={() => alert("Button clicked!")}>Get In Touch</ShinyButton>
 
           </div>
         </div>
             
-          <div className="  mt-32 grid grid-cols-2 md:grid-cols-4 gap-16 max-w-5xl w-full pt-6 mx-auto">
+          <div className="  mt-28 2xl:mt-32 grid grid-cols-2 md:grid-cols-4 gap-16 max-w-5xl w-full pt-6 mx-auto">
             {[
               { val: 2  , label: 'Years Runtime',symbol:"+" },
               { val: 6, label: 'Nodes Deployed',symbol:"" },
