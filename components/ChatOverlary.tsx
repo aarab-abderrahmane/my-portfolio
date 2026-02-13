@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { GoogleGenAI, Chat, GenerateContentResponse } from '@google/genai';
-import { Send, X, Bot, User, Maximize2, Minimize2, Sparkles } from 'lucide-react';
+import { GoogleGenAI, Chat ,Type} from '@google/genai';
+import { Send, X, Bot, User, Maximize2, Minimize2, Sparkles , ArrowBigDownDash } from 'lucide-react';
 
+import {PROJECTS} from '../data'
 
 interface ChatOverlayProps {
   isActive: boolean;
@@ -14,13 +15,14 @@ interface Message {
 }
 
 // Initialize the Gemini client once
-const ai = new GoogleGenAI({ apiKey: "AIzaSyC-F-z56YYmKbBFcYjMhYsqLrIJ9vv60rs"});
+const ai = new GoogleGenAI({ apiKey: "AIzaSyC3uWKQ0iQ_6b9rlnKCfcOR2CxzbylqIZ0"});
 
 export const ChatOverlay: React.FC<ChatOverlayProps> = ({ isActive, onClose }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isThinking, setIsThinking] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+
   
   const chatRef = useRef<Chat | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -37,10 +39,62 @@ export const ChatOverlay: React.FC<ChatOverlayProps> = ({ isActive, onClose }) =
         model: 'gemini-3-flash-preview',
         config: {
           systemInstruction: "You are an AI assistant built into a modern, dark-glassmorphism portfolio website called BentoFolio. The creator is a skilled Full-Stack Architect studying at ISTA. Be concise, friendly, helpful, and use a playful but professional tone. Do not use markdown unless necessary, prefer plain text for a clean UI."
-        }
+        },
+        response_format : {
+          type : "json_schema" ,
+          json_schema : {
+            name : "chat_response" , 
+            schema : {
+              type : "object" , 
+              properties : {
+                message : {type : "string"} , 
+                showDownload : {type : "boolean"}
+              }, 
+              required : ["message" , "showDownload"]
+            }
+          }
+        } 
+
       });
     }
   }, []);
+
+  const projectsContext = JSON.stringify(PROJECTS);
+
+  const systemInstruction = `
+    You are the AI version of Aarab Abderrahmane, a Full-Stack Developer based in Morocco. 
+    You are answering visitors on his portfolio website.
+    ALWAYS answer in the first person ("I", "Me", "My").
+
+    Here is your persona and data:
+
+    1. **Who are you?**
+      - Name: Aarab Abderrahmane.
+      - Role: Full-Stack Developer & Problem Solver.
+      - Location: Morocco.
+      - Philosophy: I don't just write code; I build digital solutions that save money and time for businesses (Value-Based Selling).
+
+    2. **Technical Skills (Be honest):**
+      - **Core (Expert):** React 19, Next.js, Tailwind CSS 4, JavaScript (ES6+), HTML5, CSS3.
+      - **Learning/Improving:** TypeScript (I use it to improve code quality but still learning advanced patterns), Node.js, MongoDB.
+      - **Tools:** Git, GitHub, Vercel, Framer Motion, AI-Assisted Development (I use AI to code faster and cleaner).
+
+    3.**My Projects Data (Use this strictly):**
+        Here is the JSON list of my projects. Read this data to answer any questions about my work, features, or tech stack:
+        ${projectsContext}
+
+    4. **Personality:**
+      - Humble but ambitious. 
+      - A "Builder" mindset: I focus on the result and the value, not just the code syntax.
+      - Professional, helpful, and direct.
+
+    5. **Logic for Response:**
+      - If the user asks for my **Resume**, **CV**, or **Contact Info**, make the answer helpful and set 'isShowDownloadCVButton' to true.
+      - If the user asks about my skills, mention React 19 and Tailwind specifically.
+      - Keep answers concise (max 3-4 sentences unless asked for details).
+
+    User Question: 
+    `;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,32 +107,29 @@ export const ChatOverlay: React.FC<ChatOverlayProps> = ({ isActive, onClose }) =
 
     try {
 
-      const stream = await chatRef.current.sendMessageStream({ message: userMsg });
-
-      let modelMessageAdded = false ; 
-      
-      for await (const chunk of stream) {
-        const c = chunk as GenerateContentResponse;
-        if (c.text) {
-          setMessages(prev => {
- 
-            const newMessages = [...prev];
-
-              // Add model message only once (on first chunk)
-              if (!modelMessageAdded) {
-                newMessages.push({ role: 'model', text: c.text });
-                modelMessageAdded = true;
-              } else {
-                newMessages[newMessages.length - 1].text += c.text;
-              }
-
-              return newMessages;
-
-          });
 
 
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents:systemInstruction + userMsg,
+        config: {
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: Type.OBJECT,
+            properties: {
+              answer: { type: Type.STRING },
+              isShowDownloadCVButton: { type: Type.BOOLEAN}
+            },
+            required: ["answer", "isShowDownloadCVButton"]
+          }
         }
-      }
+      });
+
+      const result = JSON.parse(response.text)
+      setMessages(prev => [...prev, {  role: 'model', text: result.answer , showDownload: result.isShowDownloadCVButton }]);
+      console.log(result)
+
+
     } catch (error) {
       console.error("Chat error:", error);
       setMessages(prev => {
@@ -147,7 +198,7 @@ export const ChatOverlay: React.FC<ChatOverlayProps> = ({ isActive, onClose }) =
                       </div>
                     )}
                     
-                    <div className={`max-w-[85%] px-5 py-4 rounded-[24px] text-sm leading-relaxed ${
+                    <div className={`max-w-[85%] px-5 py-4 flex flex-col rounded-[24px] text-sm leading-relaxed ${
                       msg.role === 'user' 
                         ? 'bg-white text-black rounded-br-sm' 
                         : 'bg-white/10 text-white rounded-bl-sm border border-white/5'
@@ -158,6 +209,20 @@ export const ChatOverlay: React.FC<ChatOverlayProps> = ({ isActive, onClose }) =
                           {i !== msg.text.split('\n').length - 1 && <br />}
                         </React.Fragment>
                       ))}
+
+                      {
+                        msg.showDownload && (
+                          <a 
+                            href="/Abderrahmane_Ben_Amor_CV.pdf"
+                            download
+                            className="mt-3 inline-block px-4 bg-lime-400 flex gap-2 items-end w-[160px] py-2 bg-gradient-to-r from-orange to-purple-500 text-black rounded-full text-md transition-all hover:bg-lime-300"
+                          >
+                            Download CV
+                            <ArrowBigDownDash className="inline mr-2 w-6 h-6" />
+
+                          </a>
+                        )
+                      }
                     </div>
 
                     {msg.role === 'user' && (
