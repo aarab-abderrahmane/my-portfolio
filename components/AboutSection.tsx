@@ -170,11 +170,11 @@ export const AboutSection: React.FC = () => {
                      <GenerationProvider>
                        <ProjectFolder
                          project={{ id: "1", title: "Download My CV", clipCount: 5, createdAt: "2025-01-01",
-                           images: ["./images/folder-image-1.jpg"
+                           images: ["/images/folder-image-1.jpg"
                            , "/images/folder-image-3.jpg",
-                            "./images/folder-image-2.jpg", 
-                            "./images/folder-image-4.jpg",
-                             "./images/folder-image-5.jpg"] }}
+                            "/images/folder-image-2.jpg", 
+                            "/images/folder-image-4.jpg",
+                             "/images/folder-image-5.jpg"] }}
                          index={0}
                          onClick={() => console.log("clicked")}
                          onRemove={() => console.log("removed")}

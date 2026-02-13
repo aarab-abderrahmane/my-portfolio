@@ -77,13 +77,12 @@ const App: React.FC = () => {
 
 
         
-      {/* {isLoading && <LoadingScreen onFinish={() => setIsLoading(false)} />} */}
+      {isLoading && <LoadingScreen onFinish={() => setIsLoading(false)} />}
 
 
-      {/* <div className={`transition-all duration-[1500ms] cubic-bezier(0.2, 0.8, 0.2, 1) bg-black ${
+      <div className={`transition-all duration-[1500ms] cubic-bezier(0.2, 0.8, 0.2, 1) bg-black ${
         isLoading ? 'opacity-0 scale-[0.98] pointer-events-none' : 'opacity-100 '
-      }`}> */}
-      <div className='bg-black'>
+      }`}>
 
       {/* Background Ambient Glows */}
       {/* <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-lime-400/10 blur-[150px] pointer-events-none rounded-full" />
@@ -118,7 +117,7 @@ const App: React.FC = () => {
         </section>
 
 
-        {/* <section id="projects" className="mt-40">
+        <section id="projects" className="mt-40">
           <ProjectsGrid 
           
             projects={filteredProjects} 
@@ -128,7 +127,7 @@ const App: React.FC = () => {
                 setSelectedSkill(null);
             }} 
           />
-        </section> */}
+        </section>
 
 
         <section id="about" className="mt-40">
