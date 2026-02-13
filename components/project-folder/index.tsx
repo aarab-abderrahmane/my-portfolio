@@ -10,7 +10,6 @@ import { useGeneration, useGenerationState } from "../context/generation-context
 import { useEffect, useState } from "react"
 
 
-import './global.css'
 
 export function ProjectFolder({
   project,

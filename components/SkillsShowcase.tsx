@@ -51,7 +51,7 @@ export const SkillsShowcase: React.FC<SkillsShowcaseProps> = ({ onSkillSelect, s
   return (
     <div className="w-full relative">
       <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase tracking-widest text-lime-400 font-bold mb-4">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[14px] uppercase tracking-widest text-lime-400 font-bold mb-4">
           My Stack
         </div>
         <h2 className="text-5xl font-extrabold mb-3 tracking-tighter">Tools & Technologies</h2>

@@ -2,11 +2,12 @@
 
 import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
-import type { Project } from "@/lib/data"
+import type { Project } from "../../lib/data"
 import type { ImagePosition } from "./types"
-import { SlotNumber } from "./slot-number"
 import { MenuButton } from "./menu-button"
 import { Sparkles } from "./sparkles"
+
+import { Download } from "lucide-react"
 
 // Rauno-style easing: smooth deceleration
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const
@@ -214,7 +215,7 @@ export function DefaultProject({
   return (
     <motion.div
       ref={containerRef}
-      className={`group relative w-[328px]  ${isGenerating ? "cursor-default" : "cursor-pointer"}`}
+      className={`group relative w-[360px]  ${isGenerating ? "cursor-default" : "cursor-pointer"}`}
       animate={{
         opacity: isExiting ? 0 : 1,
         scale: isExiting ? 0.95 : 1,
@@ -234,7 +235,7 @@ export function DefaultProject({
       onMouseLeave={() => !isMenuOpen && !isEditing && !showDeleteConfirm && !isDeleting && setIsHovered(false)}
     >
       <div
-        className="relative w-[320px]"
+        className="relative w-[370px]"
         style={{ perspective: "1200px" }}
       >
         {/* Back panel */}
@@ -257,7 +258,7 @@ export function DefaultProject({
             },
           }}
           style={{
-            height: "224px",
+            height: "280px",
             border: "1px solid rgba(255, 255, 255, 0.06)",
             transformStyle: "preserve-3d",
             transformOrigin: "center bottom",
@@ -308,7 +309,7 @@ export function DefaultProject({
               return (
                 <motion.div
                   key={imgIndex}
-                  className="absolute left-1/2 top-0"
+                  className="absolute left-1/2 top-[-7px]"
                   initial={false}
                   animate={{
                     x: `calc(-50% + ${xPos}px)`,
@@ -327,7 +328,7 @@ export function DefaultProject({
                   }}
                   style={{ zIndex }}
                 >
-                  <div className="h-[160px] w-[100px] overflow-hidden rounded-lg">
+                  <div className="h-[230px] w-[180px] overflow-hidden rounded-xl">
                     <motion.img
                       src={imageUrl || "/placeholder.svg"}
                       alt={"Preview " + (imgIndex + 1)}
@@ -416,89 +417,16 @@ export function DefaultProject({
               onClick={(e) => e.stopPropagation()}
             />
           </div>
-          <div className="relative h-[48px]">
+          {/* project info "myproject" */}
+          <div className="relative h-[50px]"> 
             {/* Top border */}
             <div className="absolute inset-x-0 top-0 h-[1px] bg-white/[0.04]" />
             
-            {/* Progress bar - only show during active generation */}
-            {isGenerating && progress < 100 && (
-              <motion.div
-                className="absolute top-0 left-0 h-[1px] bg-white/10"
-                initial={{ width: "0%" }}
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.1, ease: "linear" }}
-              />
-            )}
+      
             
             {/* Footer content - derive from showImages for reliability */}
             <div className="relative h-full">
-              {isEditing ? (
-                <motion.div
-                  key="editing"
-                  className="absolute inset-0 flex items-center justify-end px-4"
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 30,
-                    mass: 0.8,
-                    opacity: { duration: 0.15 },
-                  }}
-                >
-                  <div className="flex items-center gap-2">
-                    <button
-                      className="px-3 py-1.5 rounded-full text-[12px] text-white/50 hover:text-white hover:bg-white/10 transition-colors"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handleCancelEdit()
-                      }}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      className="px-3 py-1.5 rounded-full text-[12px] font-medium text-black bg-white hover:bg-white/90 transition-colors"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handleConfirmEdit()
-                      }}
-                    >
-                      Save
-                    </button>
-                  </div>
-                </motion.div>
-              ) : isGenerating && !showImages ? (
-                <motion.div
-                  key="generating"
-                  className="absolute inset-0 flex items-center justify-between px-2 pl-4"
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 30,
-                    mass: 0.8,
-                    opacity: { duration: 0.15 },
-                  }}
-                >
-                  <div className="flex items-center gap-1.5">
-                    <motion.svg
-                      className="w-3 h-3 text-white/60"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                    >
-                      <path d="M12 0L14 10L24 12L14 14L12 24L10 14L0 12L10 10L12 0Z" />
-                    </motion.svg>
-                    <span className="text-[13px] text-transparent bg-clip-text bg-gradient-to-r from-white/50 via-white/80 to-white/50 bg-[length:200%_100%] animate-shimmer">Generating</span>
-                    {progress < 95 && <span className="text-[13px] text-white/50">{remainingEta}</span>}
-                  </div>
-                  <MenuButton project={project} onOpenChange={handleMenuOpenChange} onRemove={handleDeleteClick} onCancel={onCancel} onRename={handleEditClick} isVisible={true} />
-                </motion.div>
-              ) : (
+              
                 <motion.div
                   key="default"
                   className="absolute inset-0 flex items-center justify-between px-2 pl-4"
@@ -512,277 +440,26 @@ export function DefaultProject({
                     opacity: { duration: 0.35, ease: "easeOut" },
                   }}
                 >
-                  <div className="flex items-center gap-1.5">
-                    <SlotNumber value={clipCount} isSpinning={false} />
-                    <span className="text-[13px] text-white/60">clips</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-white/50">{formattedDate}</span>
-                    <MenuButton project={project} onOpenChange={handleMenuOpenChange} onRemove={handleDeleteClick} onCancel={onCancel} onRename={handleEditClick} isVisible={true} />
+                
+                  <div className="flex items-center justify-between w-full gap-2">
+                    <span className="text-xs text-white/50">Latest Update : 2025 Feb</span>
+
+                    <div className="flex gap-2 items-center">
+                        <a href="/files/aarab-abderrahmane-cv.pdf" download className=" text-black rounded-full p-1 hover:scale-110 hover:bg-lime-500 duration-300 cursor-pointer ">
+                             <Download className="w-6 h-6 text-white hover:text-black"/>
+
+                        </a>
+                      <MenuButton  project={project} onOpenChange={handleMenuOpenChange} onRemove={handleDeleteClick} onCancel={onCancel} onRename={handleEditClick} isVisible={true} />
+                    </div>
                   </div>
                 </motion.div>
-              )}
+             
             </div>
           </div>
         </motion.div>
       </div>
 
-      {/* Delete confirmation overlay */}
-      {(showDeleteConfirm || isDeleting) && (
-        <div
-          className="absolute inset-0 z-[100] flex flex-col items-center justify-center cursor-pointer rounded-2xl"
-          onClick={() => {
-            setShowDeleteConfirm(false)
-            setIsHovered(false)
-          }}
-        >
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 rounded-2xl"
-            style={{
-              background: "#0a0a0a",
-              animation: "backdropFadeIn 300ms ease-out forwards",
-            }}
-          />
-
-          {/* Content */}
-          <div
-            className="relative cursor-default flex flex-col items-center px-5 py-5 w-full h-full"
-            style={{
-              animation: isExiting 
-                ? `${['exitShrinkRise', 'exitCollapse', 'exitFlashFade', 'exitFoldAway', 'exitDissolve'][exitAnimationType]} 200ms ease-out forwards`
-                : "menuAppear 350ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
-              transformOrigin: exitAnimationType === 3 ? 'center bottom' : 'center center',
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <style>{`
-              @keyframes backdropFadeIn {
-                0% { opacity: 0; }
-                100% { opacity: 1; }
-              }
-              @keyframes menuAppear {
-                0% {
-                  opacity: 0;
-                  transform: scale(0.85) translateY(20px);
-                }
-                100% {
-                  opacity: 1;
-                  transform: scale(1) translateY(0);
-                }
-              }
-              @keyframes crownImageAppear {
-                0% {
-                  opacity: 0;
-                  transform: translateY(10px) scale(0.8);
-                }
-                100% {
-                  opacity: 1;
-                  transform: translateY(0) scale(1);
-                }
-              }
-              /* Animation 0: Shrink + Fade + Rise */
-              @keyframes exitShrinkRise {
-                0% {
-                  opacity: 1;
-                  transform: scale(1) translateY(0);
-                }
-                100% {
-                  opacity: 0;
-                  transform: scale(0.7) translateY(-40px);
-                }
-              }
-              /* Animation 1: Collapse to Center */
-              @keyframes exitCollapse {
-                0% {
-                  opacity: 1;
-                  transform: scale(1);
-                  filter: blur(0px);
-                }
-                50% {
-                  opacity: 0.8;
-                  transform: scale(0.5);
-                  filter: blur(2px);
-                }
-                100% {
-                  opacity: 0;
-                  transform: scale(0.1);
-                  filter: blur(8px);
-                }
-              }
-              /* Animation 2: Success Flash + Fade */
-              @keyframes exitFlashFade {
-                0% {
-                  opacity: 1;
-                  filter: brightness(1);
-                }
-                15% {
-                  opacity: 1;
-                  filter: brightness(2);
-                }
-                100% {
-                  opacity: 0;
-                  filter: brightness(0.5);
-                }
-              }
-              /* Animation 3: Fold Away (3D flip) */
-              @keyframes exitFoldAway {
-                0% {
-                  opacity: 1;
-                  transform: perspective(800px) rotateX(0deg) scale(1);
-                }
-                100% {
-                  opacity: 0;
-                  transform: perspective(800px) rotateX(-90deg) scale(0.8);
-                }
-              }
-              /* Animation 4: Dissolve Out (blur + fade) */
-              @keyframes exitDissolve {
-                0% {
-                  opacity: 1;
-                  filter: blur(0px) saturate(1);
-                  transform: scale(1);
-                }
-                100% {
-                  opacity: 0;
-                  filter: blur(20px) saturate(0);
-                  transform: scale(1.1);
-                }
-              }
-            `}</style>
-
-            {/* Crown Images */}
-            <div 
-              className="flex items-end justify-center gap-0"
-              style={{ marginTop: "-34px" }}
-            >
-              {[1, 2, 3].map((imgIndex, i) => {
-                const imageUrl = project.images?.[imgIndex] || "/placeholder.svg"
-                const rotations = [-10, 0, 10]
-                const yOffsets = [4, 0, 4]
-                const scales = [0.95, 1.05, 0.95]
-                const marginLeft = i === 0 ? 0 : -8
-                
-                return (
-                  <div
-                    key={imgIndex}
-                    className="relative"
-                    style={{
-                      zIndex: i === 1 ? 3 : 1,
-                      marginLeft: marginLeft,
-                      animation: `crownImageAppear 400ms cubic-bezier(0.34, 1.56, 0.64, 1) ${80 + i * 60}ms both`,
-                    }}
-                  >
-                    <div 
-                      className="h-[72px] w-[44px] overflow-hidden rounded-md shadow-xl"
-                      style={{
-                        transform: `translateY(${yOffsets[i]}px) rotate(${rotations[i]}deg) scale(${scales[i]})`,
-                      }}
-                    >
-                      <img
-                        src={imageUrl || "/placeholder.svg"}
-                        alt={"Preview " + (imgIndex + 1)}
-                        className="h-full w-full object-cover"
-                        style={{
-                          filter: i === 1 ? "brightness(1)" : "brightness(0.6)",
-                        }}
-                      />
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-
-            {/* Clip Count Tag */}
-            <div 
-              className="flex items-center justify-center gap-1 px-2 py-1 rounded-full"
-              style={{
-                marginTop: "-20px",
-                zIndex: 10,
-                background: "rgba(255, 255, 255, 0.07)",
-                backdropFilter: "blur(12px)",
-                animation: "crownImageAppear 400ms cubic-bezier(0.34, 1.56, 0.64, 1) 280ms both",
-              }}
-            >
-              <span className="text-[11px] font-medium text-white/60">{clipCount}</span>
-              <span className="text-[11px] text-white/40">clips</span>
-            </div>
-
-            {/* Title */}
-            <div className="text-center mt-3 mb-1 px-2">
-              <p className="text-white font-semibold text-[15px] leading-snug line-clamp-2 text-balance">{project.title}</p>
-            </div>
-
-            {/* Subtitle / Deleting state */}
-            {isDeleting ? (
-              <div className="flex flex-col items-center mb-auto">
-                {isExiting ? (
-                  <p className="text-white/60 text-[13px] font-medium">Deleted</p>
-                ) : (
-                  <>
-                    <p className="text-white/40 text-[12px]">Deleting...</p>
-                    <div className="w-32 h-1 bg-white/10 rounded-full mt-2 overflow-hidden">
-                      <div
-                        className="h-full rounded-full transition-all duration-100"
-                        style={{ 
-                          width: `${deleteProgress}%`,
-                          backgroundColor: "oklch(0.5801 0.227 25.12)"
-                        }}
-                      />
-                    </div>
-                  </>
-                )}
-              </div>
-            ) : (
-              <p className="text-white/40 text-[12px] mb-auto">Project will be permanently deleted</p>
-            )}
-
-            {/* Buttons */}
-            <div className="flex items-center justify-center gap-2 w-full mt-auto" style={{ opacity: isExiting ? 0 : 1, transition: 'opacity 200ms' }}>
-              {isDeleting ? (
-                <button
-                  className="flex-1 py-2 rounded-full bg-white/[0.1] hover:bg-white/[0.15] text-white/80 hover:text-white text-[13px] font-medium transition-all duration-200 active:scale-[0.97]"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    cancelDeleteCountdown()
-                  }}
-                >
-                  Cancel
-                </button>
-              ) : (
-                <>
-                  <button
-                    className="flex-1 py-2 rounded-full bg-white/[0.1] hover:bg-white/[0.15] text-white/80 hover:text-white text-[13px] font-medium transition-all duration-200 active:scale-[0.97]"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      setShowDeleteConfirm(false)
-                      setIsHovered(false)
-                    }}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    className="flex-1 py-2 rounded-full text-white text-[13px] font-medium transition-all duration-300 ease-out active:scale-[0.97]"
-                    style={{ backgroundColor: "oklch(0.5801 0.227 25.12)" }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = "oklch(0.65 0.2 25.12)"
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = "oklch(0.5801 0.227 25.12)"
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      startDeleteCountdown()
-                    }}
-                  >
-                    Delete
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+  
 
     </motion.div>
   )

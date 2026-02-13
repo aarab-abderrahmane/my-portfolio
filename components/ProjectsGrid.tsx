@@ -17,12 +17,6 @@ interface ProjectDashboardProps {
 }
 
 
-import {
-  Cursor,
-  CursorFollow,
-  CursorProvider,
-} from './ui/cursor';
-
 
 
 
@@ -60,13 +54,13 @@ export const ProjectsGrid: React.FC<ProjectDashboardProps> = ({ projects, active
     <div className="w-full">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase tracking-widest text-lime-400 font-bold mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10 text-[12px] uppercase tracking-widest text-lime-400 font-bold mb-6">
             Featured Projects
           </div>
-          <h2 className="text-6xl font-black mb-4 tracking-tighter text-white flex flex-wrap items-center  ">Digital <span className="text-white/20 italic font-light ">  
+          <h2 className="text-6xl md:text-8xl font-black mb-4 tracking-tighter text-white flex flex-wrap items-center  ">Digital <span className="text-white/20 italic font-light ">  
           Solutions.
          </span></h2>
-          <p className="text-white/40 text-lg max-w-lg leading-relaxed font-medium">
+          <p className="text-white/40 text-lg md:text-xl max-w-lg leading-relaxed font-medium">
             Practical software solutions built with a focus on clean architecture, intuitive user interfaces, and efficient performance.
           </p>
         </div>
@@ -113,30 +107,7 @@ export const ProjectsGrid: React.FC<ProjectDashboardProps> = ({ projects, active
         </div>
       </div>
 
-      {/* Grid Container with increased padding for glows */}
-      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 auto-rows-[600px] pb-10">
-        {projects.length > 0 ? (
-          projects.map((project, idx) => {
-            // Asymmetrical Bento Logic
-            let colSpan = 'lg:col-span-2';
-            if (idx === 0) colSpan = 'lg:col-span-4 md:col-span-2';
-            if (idx === 1 || idx === 2) colSpan = 'lg:col-span-3 md:col-span-1';
-            
-            return (
-              <div key={project.id} className={`${colSpan} p-2`}>
-                <ProjectCard project={project} onOpen={(p) => {
-                   setSelectedProject(p) 
-                   setIsProjectModalOpen(true)
-                   }} />
-              </div>
-            );
-          })
-        ) : (
-          <div className="col-span-full py-40 text-center glass rounded-[48px] border border-dashed border-white/10">
-            <p className="text-white/10 text-3xl font-black uppercase tracking-widest">Registry Empty</p>
-          </div>
-        )}
-      </div> */}
+
 
       <Skiper16  projects={projects} setSelectedProject={setSelectedProject}/>
 

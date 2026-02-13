@@ -3,7 +3,7 @@
 import { useState } from "react"
 import type { Project } from "../../lib/data"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu"
-import { MoreVertical, Pencil, Trash2, X } from "lucide-react"
+import { FileText, MoreVertical, Pencil, Trash2, X } from "lucide-react"
 
 interface MenuButtonProps {
   project: Project
@@ -28,12 +28,12 @@ export function MenuButton({ project, onOpenChange, onRemove, onCancel, onRename
       <DropdownMenuTrigger asChild>
         <button
           data-menu
-          className={`p-1.5 rounded-md transition-all duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-white/20 ${
+          className={`p-1.5 rounded-full bg-white/10  transition-all duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-white/20 ${
             isOpen ? "bg-white/[0.12]" : "hover:bg-white/[0.08]"
           } ${isVisible ? "opacity-100" : "opacity-0"}`}
           onClick={(e) => e.stopPropagation()}
         >
-          <MoreVertical className={`w-4 h-4 transition-colors ${isOpen ? "text-white/70" : "text-white/40"}`} />
+          <MoreVertical className={`w-4 h-4  transition-colors ${isOpen ? "text-white/70" : "text-white/80"}`} />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
@@ -43,34 +43,24 @@ export function MenuButton({ project, onOpenChange, onRemove, onCancel, onRename
         className="w-40 bg-[#1a1a1a] border-white/[0.08] rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
         onClick={(e) => e.stopPropagation()}
       >
-        {project.isGenerating ? (
-          <DropdownMenuItem
-            className="group text-white/70 hover:text-red-400 focus:text-red-400 focus:bg-white/[0.06] cursor-pointer gap-2 transition-colors"
-            onClick={onCancel}
-          >
-            <X className="w-4 h-4 transition-colors group-hover:text-red-400 group-focus:text-red-400" />
-            Cancel
-          </DropdownMenuItem>
-        ) : (
+      
           <>
-            {!hideEdit && (
+           
               <DropdownMenuItem
                 className="text-white/70 focus:text-white focus:bg-white/[0.06] cursor-pointer gap-2"
-                onClick={onRename}
               >
-                <Pencil className="w-4 h-4" />
-                Rename
+                <svg xmlns="http://www.w3.org/2000/svg" height="26" width="26" viewBox="0 0 640 640"><path fill="rgba(255, 255, 255, 1.00)" d="M128 64C92.7 64 64 92.7 64 128L64 512C64 547.3 92.7 576 128 576L208 576L208 464C208 428.7 236.7 400 272 400L448 400L448 234.5C448 217.5 441.3 201.2 429.3 189.2L322.7 82.7C310.7 70.7 294.5 64 277.5 64L128 64zM389.5 240L296 240C282.7 240 272 229.3 272 216L272 122.5L389.5 240zM272 444C261 444 252 453 252 464L252 592C252 603 261 612 272 612C283 612 292 603 292 592L292 564L304 564C337.1 564 364 537.1 364 504C364 470.9 337.1 444 304 444L272 444zM304 524L292 524L292 484L304 484C315 484 324 493 324 504C324 515 315 524 304 524zM400 444C389 444 380 453 380 464L380 592C380 603 389 612 400 612L432 612C460.7 612 484 588.7 484 560L484 496C484 467.3 460.7 444 432 444L400 444zM420 572L420 484L432 484C438.6 484 444 489.4 444 496L444 560C444 566.6 438.6 572 432 572L420 572zM508 464L508 592C508 603 517 612 528 612C539 612 548 603 548 592L548 548L576 548C587 548 596 539 596 528C596 517 587 508 576 508L548 508L548 484L576 484C587 484 596 475 596 464C596 453 587 444 576 444L528 444C517 444 508 453 508 464z"/></svg>
+                PDF
               </DropdownMenuItem>
-            )}
+           
             <DropdownMenuItem
               className="group text-white/70 hover:text-red-400 focus:text-red-400 focus:bg-white/[0.06] cursor-pointer gap-2 transition-colors"
-              onClick={onRemove}
             >
-              <Trash2 className="w-4 h-4 transition-colors group-hover:text-red-400 group-focus:text-red-400" />
-              Delete
+              <FileText className="text-white" />
+              DOCX
             </DropdownMenuItem>
           </>
-        )}
+        
       </DropdownMenuContent>
     </DropdownMenu>
   )

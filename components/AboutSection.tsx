@@ -42,10 +42,12 @@ export const AboutSection: React.FC = () => {
      
       {/* Section Header */}
       <div className="mb-16 md:mb-24 px-4 relative z-10">
-        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase tracking-[0.4em] text-emerald-400 font-black mb-6 md:mb-8 backdrop-blur-md">
-          <Fingerprint className="w-3 h-3" />
-          Professional Persona
-        </div>
+   
+          <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10 text-[12px] uppercase tracking-widest text-lime-400 font-bold mb-6  backdrop-blur-md">
+            <Fingerprint className="w-4 h-4" />
+
+            Professional Persona
+          </div>
         <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white mb-6 leading-[0.9] md:leading-none">
           Think <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#CCFF00] to-lime-600">User</span>,<br/>
           <span className="text-white/20 italic font-light">
@@ -162,30 +164,17 @@ export const AboutSection: React.FC = () => {
 
       
         {/* Download CV */}
-        <div className="md:col-span-1  lg:col-span-4 flex justify-center items-center relative overflow-hidden min-h-[300px]  ">
-              {/* <div className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-              <CircularText
-                text="DOWNLOAD*CV*NOW*"
-                onHover="speedUp"
-                spinDuration={20}
-                className="custom-class "
-              />    
-              </div>
-
-
-              <a href="/files/aarab-abderrahmane-cv.pdf" download className="bg-[#CCFF00] text-black rounded-full p-4 hover:scale-110 duration-300 cursor-pointer absolute">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
-              </a>
-             */}
+        <div className="md:col-span-1  lg:col-span-4 flex justify-center items-end relative mt-6 md:mt-0 min-h-[300px]  ">
 
 
                      <GenerationProvider>
                        <ProjectFolder
-                         project={{ id: "1", title: "My Project", clipCount: 5, createdAt: "2025-01-01", images: ["https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2554.jpg?semt=ais_hybrid&w=740&q=80"
-                           , "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2554.jpg?semt=ais_hybrid&w=740&q=80",
-                            "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2554.jpg?semt=ais_hybrid&w=740&q=80", 
-                            "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2554.jpg?semt=ais_hybrid&w=740&q=80",
-                             "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2554.jpg?semt=ais_hybrid&w=740&q=80"] }}
+                         project={{ id: "1", title: "Download My CV", clipCount: 5, createdAt: "2025-01-01",
+                           images: ["./images/folder-image-1.jpg"
+                           , "/images/folder-image-3.jpg",
+                            "./images/folder-image-2.jpg", 
+                            "./images/folder-image-4.jpg",
+                             "./images/folder-image-5.jpg"] }}
                          index={0}
                          onClick={() => console.log("clicked")}
                          onRemove={() => console.log("removed")}

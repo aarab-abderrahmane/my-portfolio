@@ -156,8 +156,7 @@ export const ContactSection: React.FC = () => {
             <div className="flex gap-4">
               {[
                 { icon: <Linkedin className="w-5 h-5" />, color: 'hover:text-blue-400', label: 'LI' },
-                { icon: <Github className="w-5 h-5" />, color: 'hover:text-white', label: 'GH' },
-                { icon: <Twitter className="w-5 h-5" />, color: 'hover:text-sky-400', label: 'TW' }
+                { icon: <Github className="w-5 h-5" />, color: 'hover:text-white', label: 'GH' }
               ].map((social, i) => (
                 <a key={i} href="#" className={`group relative w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center transition-all hover:bg-white/10 ${social.color} hover:-translate-y-2`}>
                    <div className="relative z-10">{social.icon}</div>
